@@ -85,3 +85,99 @@ git push origin master
 <br>
 
 </details>
+
+
+-- 
+<br>
+
+# test_serverless_sqs
+* Integración Servicio SQS con Serverless
+
+</br>
+
+## Usos y Ejemplificación de SQS y Serverless
+* Ejemplo Base SQS : https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6
+* https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d
+* https://github.com/alexyklu/serverless-offline-lambda-with-sqs
+
+
+
+</br>
+
+## Instalación del Proyecto y Librerías
+* git clone https://github.com/aweitzel-hub/test-serverless-sqs
+* Dentro del directorio del proyecto instalar los plugins implementados
+  * `npm install serverless-offline --save-dev`  
+  * `npm install -g serverless`
+  * `npm i serverless-offline`
+  * `npm install serverless-offline-ssm --save-dev`
+  * `npm install serverless-offline-sqs`
+  * `npm install --save-dev serverless-offline-elasticmq`
+  * Reiniciar el IDE caso de tenerlo ejecutado.
+
+
+</br>
+
+
+
+
+### Tecnologías Implementadas
+
+| **Tecnologías** | **Versión** | **Finalidad** |               
+| ------------- | ------------- | ------------- |
+| SDK | 4.3.2  | Inyección Automática de Módulas para Lambdas |
+| Serverless Framework Core | 3.23.0 | Core Servicios AWS |
+| Serverless Plugin | 6.2.2  | Librerías para la Definición Modular |
+| Systems Manager Parameter Store (SSM) | 3.0 | Manejo de Variables de Entorno |
+| Amazon Simple Queue Service (SQS) | 7.0 | Servicio de colas de mensajes distribuidos | 
+| Elastic MQ | 1.3 | Interfaz compatible con SQS (msg memory) | 
+| Amazon Api Gateway | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
+| NodeJS | 14.18.1  | Librería JS |
+| VSC | 1.72.2  | IDE |
+| Postman| 10.11  | Cliente Http |
+| CMD | 10 | Símbolo del Sistema para linea de comandos | 
+| Git | 2.29.1  | Control de Versiones |
+
+
+
+</br>
+
+### Documentación Oficial de las Tecnologías Implementadas.
+
+| **Tecnología** | **Documentación** |               
+| -------------  | ------------- |
+| Serverless Framework V3 |  https://www.serverless.com//blog/serverless-framework-v3-is-live |
+| Amazon Simple Queue Service (SQS) | https://aws.amazon.com/es/sqs/ | 
+| Elastic MQ | https://github.com/softwaremill/elasticmq | 
+| Amazon Api Gateway |  https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html |
+| NodeJs |  https://nodejs.org/en/ |
+| VSC |  https://code.visualstudio.com/docs |
+| Postman |  https://learning.postman.com/docs/publishing-your-api/documenting-your-api/ |
+| Git   |  https://git-scm.com/docs |
+
+</br>
+
+### Plugins Implementados.
+
+| **Plugin** | **Descarga** |               
+| -------------  | ------------- |
+| serverless-offline |  https://www.serverless.com/plugins/serverless-offline |
+| serverless-offline-ssm |  https://www.npmjs.com/package/serverless-offline-ssm |
+| serverless-offline-sqs | https://www.npmjs.com/package/serverless-offline-sqs |
+| serverless-offline-elasticmq | https://www.npmjs.com/package/serverless-offline-elasticmq |
+
+
+</br>
+
+### Extensiones VSC Implementados.
+
+| **Extensión** |              
+| -------------  | 
+| Prettier - Code formatter |
+| YAML - Autoformatter .yml (alt+shift+f) |
+| DotENV |
+
+
+</br>
+
+<hr>

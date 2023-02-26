@@ -1,0 +1,8 @@
+Resources:
+    Receiver-Queue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: Receiver-Queue.fifo
+        VisibilityTimeout : 60
+        FifoQueue: true
+        ContentBasedDeduplication: true
