@@ -38,6 +38,14 @@ npm i serverless-offline --save-dev
 ```git
 npm i serverless-offline-ssm --save-dev
 ```
+* Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs)
+```git
+npm i serverless-offline-sqs
+```
+* Instalamos [serverles elasticmq](https://www.npmjs.com/package/serverless-offline-elasticmq)
+```git
+npm i serverless-offline-elasticmq
+```
 * Una vez instalado git, lo inicializamos en nuestro proyecto
 ```git
 git init
