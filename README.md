@@ -17,7 +17,7 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
 
  - [1.0) Descripción del Proyecto.](#10-descripción-)
  - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
- - [1.2) Configurar un proyecto serverless desde cero](#12-configurar-un-proyecto-serverless-desde-cero-)
+ - [1.2) Configurar el proyecto serverless desde cero](#12-configurar-el-proyecto-serverless-desde-cero-)
  - [1.3) Tecnologías.](#13-tecnologías-)
  - [1.4) Referencias.](#14-referencias-)
 
@@ -90,7 +90,7 @@ npm i
    docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
  ```
 * Abrimos la herramienta de docker y ejecutamos el container  
-* Levantamos el proyecto
+* Ejecutamos el proyecto
 ```git
 sls offline start
 ```
@@ -100,7 +100,7 @@ sls offline start
 
 </details>
 
-### 1.2) Configurar un proyecto serverless desde cero [🔝](#índice-)
+### 1.2) Configurar el proyecto serverless desde cero [🔝](#índice-)
 
 <details>
   <summary>Ver</summary>
@@ -144,6 +144,15 @@ npm i serverless-offline-sqs
 ```git
 npm i serverless-offline-elasticmq
 ```
+* Instalamos docker
+* Creamos el contenedor con la imagen de elasticmq para emular el servicio de colas en memoria
+```git
+   docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
+```
+* Ejecutamos el proyecto
+```git
+sls offline start
+```
 * Una vez instalado git, lo inicializamos en nuestro proyecto
 ```git
 git init
@@ -156,7 +165,7 @@ git remote add origin https://github.com/andresWeitzel/Microservice_Mercadolibre
 ```git
 git pull origin master
 ```
-* Agregamos lo local, commitiamos y pusheamos
+* Agregamos lo local, commit y push
 ```git
 git add .
 git commit -m "Updated x"
