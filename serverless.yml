@@ -23,7 +23,7 @@ plugins:
 
 
 functions:
-  hello:
+  helloTest:
     handler: src/lambdas/hello.test
     events:
       - http:

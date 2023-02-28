@@ -1,6 +1,46 @@
+![Index app](./doc/assets/img/Producer_Consumer_SQS_FIFO_AWS.drawio.png)
+
 # Producer_Consumer_SQS_FIFO_AWS
 Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, Docker, ElasticMQ, entre otros.
 
+
+<br>
+
+## Índice 📜
+
+<details>
+ <summary> Ver </summary>
+ 
+ <br>
+ 
+### Sección 1) Descripción, Tecnologías y Referencias
+
+ - [1.0) Descripción del Proyecto.](#10-descripción-)
+ - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
+ - [1.2) Configurar un proyecto serverless desde cero](#12-configurar-un-proyecto-serverless-desde-cero-)
+ - [1.3) Tecnologías.](#13-tecnologías-)
+ - [1.4) Referencias.](#14-referencias-)
+
+<br>
+
+</details>
+
+
+<br>
+
+## Sección 1) Descripción, Tecnologías y Dependencias 
+
+
+### 1.0) Descripción [🔝](#índice-) 
+
+<details>
+  <summary>Ver</summary>
+ 
+ <br>
+
+<br>
+
+</details>
 
 
 ### 1.1) Ejecución del Proyecto [🔝](#índice-)
@@ -124,60 +164,13 @@ git push origin master
 ```
 
 
-
-<br>
-
-</details>
-
-### 1.4) Referencias [🔝](#índice-)
+### 1.3) Tecnologías [🔝](#índice-) 
 
 <details>
   <summary>Ver</summary>
  
  <br>
-
-#### Conceptos SQS
- * [Conceptos claves aws sqs](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
- * [Diferencias SQS SNS](https://aws.amazon.com/it/sqs/faqs/)
-
-<br>
-
-</details>
-
-
--- 
-<br>
-
-# test_serverless_sqs
-* Integración Servicio SQS con Serverless
-
-</br>
-
-## Usos y Ejemplificación de SQS y Serverless
-* Ejemplo Base SQS : https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6
-* https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d
-* https://github.com/alexyklu/serverless-offline-lambda-with-sqs
-
-
-
-</br>
-
-## Instalación del Proyecto y Librerías
-* git clone https://github.com/aweitzel-hub/test-serverless-sqs
-* Dentro del directorio del proyecto instalar los plugins implementados
-  * `npm install serverless-offline --save-dev`  
-  * `npm install -g serverless`
-  * `npm i serverless-offline`
-  * `npm install serverless-offline-ssm --save-dev`
-  * `npm install serverless-offline-sqs`
-  * `npm install --save-dev serverless-offline-elasticmq`
-  * Reiniciar el IDE caso de tenerlo ejecutado.
-
-
-</br>
-
-
-
+ 
 
 ### Tecnologías Implementadas
 
@@ -200,7 +193,7 @@ git push origin master
 
 </br>
 
-### Documentación Oficial de las Tecnologías Implementadas.
+### Documentación Oficial.
 
 | **Tecnología** | **Documentación** |               
 | -------------  | ------------- |
@@ -236,6 +229,45 @@ git push origin master
 | DotENV |
 
 
+
+<br>
+
+</details>
+
+<br>
+
+### 1.4) Referencias [🔝](#índice-)
+
+<details>
+  <summary>Ver</summary>
+ 
+ <br>
+
+#### Conceptos SQS
+ * [Conceptos claves aws sqs](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
+ * [Diferencias SQS SNS](https://aws.amazon.com/it/sqs/faqs/)
+
+<br>
+
+</details>
+
+
+-- 
+<br>
+
+# test_serverless_sqs
+* Integración Servicio SQS con Serverless
+
 </br>
 
-<hr>
+## Usos y Ejemplificación de SQS y Serverless
+* Ejemplo Base SQS : https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6
+* https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d
+* https://github.com/alexyklu/serverless-offline-lambda-with-sqs
+
+
+<br>
+
+</details>
+
+
