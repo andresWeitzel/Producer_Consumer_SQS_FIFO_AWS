@@ -248,18 +248,6 @@ git push origin master
  * [Conceptos claves aws sqs](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
  * [Diferencias SQS SNS](https://aws.amazon.com/it/sqs/faqs/)
 
-<br>
-
-</details>
-
-
--- 
-<br>
-
-# test_serverless_sqs
-* Integración Servicio SQS con Serverless
-
-</br>
 
 ## Usos y Ejemplificación de SQS y Serverless
 * Ejemplo Base SQS : https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6
