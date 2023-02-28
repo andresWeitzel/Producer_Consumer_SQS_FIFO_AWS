@@ -2,6 +2,48 @@
 Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, Docker, ElasticMQ, entre otros.
 
 
+
+### 1.1) Ejecución del Proyecto [🔝](#índice-)
+
+<details>
+  <summary>Ver</summary>
+
+* Instalamos la JDK de Java (>8) para usar docker.
+* Instalamos Docker para correr la imagen de elasticmq. 
+* Una vez creado un entorno de trabajo a través de algún ide, clonamos el proyecto
+```git
+git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
+```
+* Nos posicionamos sobre el proyecto
+```git
+cd 'projectName'
+```
+* Instalamos todos los paquetes necesarios
+```git
+npm i
+```
+* Creamos un archivo para almacenar las variables ssm utilizadas en el proyecto (Más allá que sea un proyecto con fines no comerciales es una buena práctica utilizar variables de entorno).
+  * Click der sobre la raíz del proyecto
+  * New file
+  * Creamos el archivo con el name `serverless_ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
+  * Añadimos las ssm necesarias dentro del archivo.
+  ```git
+   
+  ```
+* Abrimos una terminal/cmd y creamos el contenedor de [elasticmq-native](https://hub.docker.com/r/softwaremill/elasticmq-native/) con docker.
+ ```git
+   docker run -n elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
+ ```   
+* Levantamos el proyecto
+```git
+sls offline start
+```
+ 
+ 
+<br>
+
+</details>
+
 ### 1.2) Configurar un proyecto serverless desde cero [🔝](#índice-)
 
 <details>
