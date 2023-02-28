@@ -195,6 +195,7 @@ git push origin master
 | Elastic MQ | 1.3 | Interfaz compatible con SQS (msg memory) | 
 | Amazon Api Gateway | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
 | NodeJS | 14.18.1  | Librería JS |
+| Docker Desktop | 4.12.0 | Herramienta para contenedores |
 | VSC | 1.72.2  | IDE |
 | Postman| 10.11  | Cliente Http |
 | CMD | 10 | Símbolo del Sistema para linea de comandos | 
