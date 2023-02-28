@@ -25,10 +25,25 @@ npm i
 * Creamos un archivo para almacenar las variables ssm utilizadas en el proyecto (Más allá que sea un proyecto con fines no comerciales es una buena práctica utilizar variables de entorno).
   * Click der sobre la raíz del proyecto
   * New file
-  * Creamos el archivo con el name `serverless_ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
+  * Creamos el archivo con el name `serverless.ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
   * Añadimos las ssm necesarias dentro del archivo.
   ```git
-   
+   # Keys
+    X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
+
+    BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+
+    # Test
+    HELLO_TEST : 'HELLO_SSM_TEST'
+
+    #Config
+    REGION : 'eu-west-1'
+
+    #SQS
+    RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
+
+
+
   ```
 * Abrimos una terminal/cmd y creamos el contenedor de [elasticmq-native](https://hub.docker.com/r/softwaremill/elasticmq-native/) con docker.
  ```git
