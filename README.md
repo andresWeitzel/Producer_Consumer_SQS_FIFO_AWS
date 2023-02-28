@@ -32,7 +32,7 @@ npm i
   ```
 * Abrimos una terminal/cmd y creamos el contenedor de [elasticmq-native](https://hub.docker.com/r/softwaremill/elasticmq-native/) con docker.
  ```git
-   docker run -n elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
+   docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
  ```   
 * Levantamos el proyecto
 ```git
