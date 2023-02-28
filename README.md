@@ -162,6 +162,9 @@ git add .
 git commit -m "Updated x"
 git push origin master
 ```
+<br>
+
+</details>
 
 
 ### 1.3) Tecnologías [🔝](#índice-) 
@@ -171,7 +174,6 @@ git push origin master
  
  <br>
  
-
 ### Tecnologías Implementadas
 
 | **Tecnologías** | **Versión** | **Finalidad** |               
@@ -234,7 +236,6 @@ git push origin master
 
 </details>
 
-<br>
 
 ### 1.4) Referencias [🔝](#índice-)
 
