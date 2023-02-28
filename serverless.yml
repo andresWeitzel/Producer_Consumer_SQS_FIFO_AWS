@@ -9,7 +9,11 @@ provider:
   region: eu-west-1
   memorySize: 512
   timeout: 10
-  environment: ${file(serverless.env.yml)}
+  environment: ${file(serverless.ssm.yml)}
+  apiGateway:
+    apiKeys:
+      - name : xApiKey
+        value : ${file(./serverless.ssm.yml):X_API_KEY}
 
 plugins:
   - serverless-offline-elasticmq
@@ -59,10 +63,9 @@ custom:
   serverless-offline-ssm:
     stages:
       - dev
-    ssm:
-      "/hello_test": "HELLO SSM"
-      "/region": "eu-west-1"
-      "/receiver_queue_url": "http://localhost:9324/queue/Receiver-Queue"
+    ssm: 
+      ${file(./serverless.ssm.yml)}
   serverless-offline:
     httpPort: 4000
     lambdaPort: 4002
+    

@@ -6,4 +6,4 @@ jspm_packages
 .serverless
 
 # SSM files
-serverless_ssm.yml
+serverless.ssm.yml
