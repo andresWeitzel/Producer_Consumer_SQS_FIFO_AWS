@@ -1,12 +1,22 @@
+
+//External
 var AWS = require('aws-sdk');
 AWS.config.update({ region:'eu-west-1' });
-var sqs = new AWS.SQS({
-    region: process.env.REGION
-});
 
-exports.compute = function(event, context, callback) {
-    var accountId = context.invokedFunctionArn.split(":")[4];
-    var queueUrl = process.env.RECEIVER_QUEUE_URL;
+//Environment Vars
+const {REGION} =  require(process.env.REGION);
+const {RECEIVER_QUEUE_URL} =  require(process.env.RECEIVER_QUEUE_URL);
+
+//Const/Vars
+const sqs = new AWS.SQS({
+    region: REGION
+});
+const queueUrl = RECEIVER_QUEUE_URL;
+let accountId;
+
+
+exports.handler = function(event, context, callback) {
+    accountId = context.invokedFunctionArn.split(":")[4];
 
     // response and status of HTTP endpoint
     var responseBody = {

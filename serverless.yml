@@ -31,14 +31,14 @@ functions:
           path: hello
           private: true
   senderSQS:
-    handler: src/lambdas/senderSQS.compute
+    handler: src/lambdas/senderSQS.handler
     events:
       - http:
           method: POST
           path: sender-queue
           private: true
   ReceiverSQS:
-    handler: src/lambdas/receiverSQS.compute
+    handler: src/lambdas/receiverSQS.handler
     events:
       - sqs: arn:aws:sqs:region:XXXXXX:Receiver-Queue
 resources:
