@@ -260,7 +260,8 @@ git push origin master
 
 
 ## Usos y Ejemplificación de SQS y Serverless
-* Ejemplo Base SQS : https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6
+* [Ejemplo base aws-node-sqs](https://github.com/ibrahimjamil/serverless-rest-examples/blob/v3/aws-node-sqs-worker/index.js)
+* [Parte de Ejemplo Base SQS](https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6)
 * https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d
 * https://github.com/alexyklu/serverless-offline-lambda-with-sqs
 

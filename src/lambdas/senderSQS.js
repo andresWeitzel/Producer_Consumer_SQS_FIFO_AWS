@@ -1,52 +1,64 @@
+//Environment Vars
+const REGION = process.env.REGION;
+const RECEIVER_QUEUE_URL = process.env.RECEIVER_QUEUE_URL;
 
 //External
-var AWS = require('aws-sdk');
-AWS.config.update({ region:'eu-west-1' });
+var AWS = require("aws-sdk");
 
-//Environment Vars
-const {REGION} =  require(process.env.REGION);
-const {RECEIVER_QUEUE_URL} =  require(process.env.RECEIVER_QUEUE_URL);
+//Helpers
+const { requestResult } = require("../helpers/http/bodyResponse");
+const { statusCode } = require("../enums/http/statusCode");
 
 //Const/Vars
 const sqs = new AWS.SQS({
-    region: REGION
+  region: REGION,
 });
 const queueUrl = RECEIVER_QUEUE_URL;
 let accountId;
+let response;
 
+module.exports.handler = function (event, context, callback) {
+  
+  response = null;
+  accountId = context.invokedFunctionArn.split(":")[4];
 
-exports.handler = function(event, context, callback) {
-    accountId = context.invokedFunctionArn.split(":")[4];
+  // response and status of HTTP endpoint
+  var responseBody = {
+    message: "",
+  };
 
-    // response and status of HTTP endpoint
-    var responseBody = {
-        message: ''
-    };
-    var responseCode = 200;
+  // SQS message parameters
+  var params = {
+    MessageBody: event.body,
+    QueueUrl: queueUrl,
+    MessageAttributes: {
+        AttributeName: {
+          StringValue: "Attribute Value",
+          DataType: "String",
+        },
+      },
+  };
 
-    // SQS message parameters
-    var params = {
-        MessageBody: event.body,
-        QueueUrl: queueUrl
-    };
+  sqs.sendMessage(params, async function (err, data) {
+    if (err) {
+      let msg = "Failed to send message" + err;
 
-    sqs.sendMessage(params, function(err, data) {
-        if (err) {
-            console.log('error:', "failed to send message" + err);
-            var responseCode = 500;
-        } else {
-            console.log('data:', data.MessageId);
-            responseBody.message = 'Sent to ' + queueUrl;
-            responseBody.messageId = data.MessageId;
-        }
-        var response = {
-            statusCode: responseCode,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(responseBody)
-        };
+      response = await requestResult(
+        statusCode.INTERNAL_SERVER_ERROR,
+        msg,
+        event
+      );
 
-        callback(null, response);
-    });
-}
+      console.log(msg);
+    } else {
+      console.log("data:", data.MessageId);
+      responseBody.message = "Sent to " + queueUrl;
+      responseBody.QueueUrl = data.QueueUrl;
+      responseBody.messageId = data.MessageId;
+
+      response = await requestResult(statusCode.OK, responseBody, event);
+    }
+
+    callback(null, response);
+  });
+};
