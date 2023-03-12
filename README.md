@@ -153,25 +153,7 @@ npm i serverless-offline-elasticmq
 ```git
 sls offline start
 ```
-* Una vez instalado git, lo inicializamos en nuestro proyecto
-```git
-git init
-```
-* Asiganmos la uri del remoto
-```git
-git remote add origin https://github.com/andresWeitzel/Microservice_Mercadolibre_Users_AWS
-```
-* Traemos los cambios del remoto
-```git
-git pull origin master
-```
-* Agregamos lo local, commit y push
-```git
-git add .
-git commit -m "Updated x"
-git push origin master
-```
-<br>
+
 
 </details>
 
