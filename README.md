@@ -95,7 +95,7 @@ npm i
   ```
 * Abrimos una terminal/cmd y creamos el contenedor de [elasticmq-native](https://hub.docker.com/r/softwaremill/elasticmq-native/) con docker.
  ```git
-   docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
+ docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
  ```
 * Abrimos la herramienta de docker y ejecutamos el container  
 * Ejecutamos el proyecto
@@ -177,38 +177,24 @@ sls offline start
 
 | **Tecnologías** | **Versión** | **Finalidad** |               
 | ------------- | ------------- | ------------- |
-| SDK | 4.3.2  | Inyección Automática de Módulas para Lambdas |
-| Serverless Framework Core | 3.23.0 | Core Servicios AWS |
-| Serverless Plugin | 6.2.2  | Librerías para la Definición Modular |
-| Systems Manager Parameter Store (SSM) | 3.0 | Manejo de Variables de Entorno |
-| Amazon Simple Queue Service (SQS) | 7.0 | Servicio de colas de mensajes distribuidos | 
-| Elastic MQ | 1.3 | Interfaz compatible con SQS (msg memory) | 
-| Amazon Api Gateway | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
-| NodeJS | 14.18.1  | Librería JS |
-| Docker Desktop | 4.12.0 | Herramienta para contenedores |
-| VSC | 1.72.2  | IDE |
-| Postman| 10.11  | Cliente Http |
-| CMD | 10 | Símbolo del Sistema para linea de comandos | 
-| Git | 2.29.1  | Control de Versiones |
+| [SDK](https://www.serverless.com/framework/docs/guides/sdk/) | 4.3.2  | Inyección Automática de Módulos para Lambdas |
+| [Serverless Framework Core v3](https://www.serverless.com//blog/serverless-framework-v3-is-live) | 3.23.0 | Core Servicios AWS |
+| [Serverless Plugin](https://www.serverless.com/plugins/) | 6.2.2  | Librerías para la Definición Modular |
+| [Systems Manager Parameter Store (SSM)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) | 3.0 | Manejo de Variables de Entorno |
+| [Amazon Simple Queue Service (SQS)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) | 7.0 | Servicio de colas de mensajes distribuidos | 
+| [Elastic MQ](https://github.com/softwaremill/elasticmq) | 1.3 | Interfaz compatible con SQS (msg memory) | 
+| [Amazon Api Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
+| [NodeJS](https://nodejs.org/en/) | 14.18.1  | Librería JS |
+| [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) | 4.12.0 | Herramienta para contenedores |
+| [VSC](https://code.visualstudio.com/docs) | 1.72.2  | IDE |
+| [Postman](https://www.postman.com/downloads/) | 10.11  | Cliente Http |
+| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
+| [Git](https://git-scm.com/downloads) | 2.29.1  | Control de Versiones |
 
 
 
 </br>
 
-### Documentación Oficial.
-
-| **Tecnología** | **Documentación** |               
-| -------------  | ------------- |
-| Serverless Framework V3 |  https://www.serverless.com//blog/serverless-framework-v3-is-live |
-| Amazon Simple Queue Service (SQS) | https://aws.amazon.com/es/sqs/ | 
-| Elastic MQ | https://github.com/softwaremill/elasticmq | 
-| Amazon Api Gateway |  https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html |
-| NodeJs |  https://nodejs.org/en/ |
-| VSC |  https://code.visualstudio.com/docs |
-| Postman |  https://learning.postman.com/docs/publishing-your-api/documenting-your-api/ |
-| Git   |  https://git-scm.com/docs |
-
-</br>
 
 ### Plugins Implementados.
 
