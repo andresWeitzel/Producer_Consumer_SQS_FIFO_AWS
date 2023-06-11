@@ -490,8 +490,13 @@ npm start
  * [Conceptos claves aws sqs](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
  * [Diferencias SQS SNS](https://aws.amazon.com/it/sqs/faqs/)
 
+#### SQS aws-sdk-v3
+* [Envío de mensajes a través de colas](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/javascript_sqs_code_examples.html)
 
-## Usos y Ejemplificación de SQS y Serverless
+#### Ejemplos para Queues FIFO
+* [Ejemplos FIFO](https://docs.aws.amazon.com/sns/latest/dg/fifo-topic-code-examples.html)
+
+#### Usos y Ejemplificación de SQS y Serverless
 * [Ejemplo base aws-node-sqs](https://github.com/ibrahimjamil/serverless-rest-examples/blob/v3/aws-node-sqs-worker/index.js)
 * [Parte de Ejemplo Base SQS](https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6)
 * https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d

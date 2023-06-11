@@ -6,6 +6,7 @@ Resources:
         MessageRetentionPeriod: 120
         VisibilityTimeout: 10
         FifoQueue: true
+        ContentBasedDeduplication: true
         RedrivePolicy:
           deadLetterTargetArn:
             Fn::GetAtt:

@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS#readme",
   "devDependencies": {
-    "aws-sdk": "^2.1395.0",
     "serverless-offline": "^12.0.4",
     "serverless-offline-elasticmq": "^0.0.1",
     "serverless-offline-ssm": "^6.2.0"
