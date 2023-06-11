@@ -3,6 +3,8 @@
 # Producer_Consumer_SQS_FIFO_AWS
 Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, Docker, ElasticMQ, entre otros.
 
+* [Playlist proyecto](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+
 
 <br>
 
@@ -592,18 +594,6 @@ curl --location 'http://localhost:4000/dev/sender-queue/' \
 
 <br>
 
-<br>
-
-### 2.1.4) Eliminar un objeto pago
-#### Request
-``` postman
-```
-
-#### Response
-``` postman
-```
-
-<br>
 
 </details>
 
@@ -618,6 +608,9 @@ curl --location 'http://localhost:4000/dev/sender-queue/' \
 <details>
   <summary>Ver</summary>
 <br>
+
+#### [Visualizar playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+![Index app](./doc/assets/yt/playlist.png)
 
 </details>
 
