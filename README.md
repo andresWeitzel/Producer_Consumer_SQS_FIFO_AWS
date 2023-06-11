@@ -48,7 +48,24 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
  
  <br>
 
- `Importante` : Para el uso de colas de tipo FIFO, según la opción de uso de elasticmq como server, es necesario que se tenga la versión 0.15.4 del .jar en adelante para la correcta ejecución de las mismas.
+### 1.0.0) Descripción General
+
+ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, Docker, ElasticMQ, entre otros.
+
+* [Playlist proyecto](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+* `Importante` : Para el uso de colas de tipo FIFO, según la opción de uso de elasticmq como server, es necesario que se tenga la versión 0.15.4 del .jar en adelante para la correcta ejecución de las mismas.
+
+
+ ### 1.0.1) Descripción Arquitectura y Funcionamiento
+ 
+ * La imagen de la arquitectura de aws empleada describe el flujo de funcionamiento del sistema de envío de mensajes a través de SQS de forma general. Cualquier petición hacia el mismo, parte desde un cliente (Postman, navegador, etc). 
+ * `Paso 1` : Dicha solicitud es recibida por el api-gateway y solamente se validará si es que dentro de los encabezados de dicha solicitud se encuentra la x-api-key correcta. Existe la excepción de encolar mensajes desde una URI de referencia (http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX), pero sin pasar por la lambda sender
+ * `Paso 2` : El api gateway valida la petición y la reenvía hacia la lambda sender. El único punto de acceso es este. (Para la arquitectura planteada)
+ * `Paso 3` : La lambda sender realiza las validaciones de las ssm correspondientes con el System Manager Paramater Store.. validan token, valores de sqs definidos (host, puerto, nombres de colas, etc).
+ * `Pasos 4` : La lambda sender encola el mensaje en la cola de tipo fifo explicitada para luego ser consumida por la lambda receiver.
+ * `Pasos 5` : La lambda receiver imprime el mensaje (objeto de tipo Record) en consola.
+ * `Aclaraciones` : Se emula dicho funcionamiento dentro de la misma red y en entorno local con los plugins de serverless correspondientes. 
+
 
 <br>
 
