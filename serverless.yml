@@ -4,9 +4,9 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   stage: dev
-  region: eu-west-1
+  region: us-east-1
   memorySize: 512
   timeout: 10
   environment: ${file(serverless.ssm.yml)}
@@ -16,56 +16,55 @@ provider:
         value : ${file(./serverless.ssm.yml):X_API_KEY}
 
 plugins:
-  - serverless-offline-elasticmq
   - serverless-offline-sqs
   - serverless-offline-ssm
   - serverless-offline
 
 
 functions:
-  helloTest:
-    handler: src/lambdas/hello.test
-    events:
-      - http:
-          method: GET
-          path: hello
-          private: true
   senderSQS:
     handler: src/lambdas/senderSQS.handler
+    name : Queue-SendMessage-Lambda
+    description: to send sqs message
     events:
       - http:
           method: POST
           path: sender-queue
           private: true
+
   ReceiverSQS:
     handler: src/lambdas/receiverSQS.handler
+    name: Queue-ReceiveMessage-Lambda
+    description: to receive sqs message
     events:
-      - sqs: arn:aws:sqs:region:XXXXXX:Receiver-Queue
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - fifoQueueOne
+              - Arn
+          batchSize: 10 
 resources:
   - ${file(src/resources/api-gateway.yml)}
   - ${file(src/resources/sqs-config.yml)}
 
 custom:
-  elasticmq:
-    stages:
-      - dev
-    start:
-      port: 9324
-      noStart: false
-  serverless-offline-sqs:
-    autoCreate: true # create queue if not exists
-    apiVersion: "2012-11-05"
-    endpoint: http://0.0.0.0:9324
-    region: eu-west-1
-    accessKeyId: root
-    secretAccessKey: root
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4002
+  serverless-offline-sqs:  
+    sqsHost: 127.0.0.1
+    sqsPort: 9324
+    autoCreate: true
+    apiVersion: "latest"
+    endpoint: http://127.0.0.1:9324
+    region: us-east-1
+    accessKeyId: local
+    secretAccessKey: local
     skipCacheInvalidation: false
   serverless-offline-ssm:
     stages:
       - dev
     ssm: 
       ${file(./serverless.ssm.yml)}
-  serverless-offline:
-    httpPort: 4000
-    lambdaPort: 4002
+
     

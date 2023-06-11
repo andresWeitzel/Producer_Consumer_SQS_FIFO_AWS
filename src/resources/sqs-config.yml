@@ -1,8 +1,14 @@
 Resources:
-    Receiver-Queue:
+    fifoQueueOne:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: Receiver-Queue.fifo
-        VisibilityTimeout : 60
+        QueueName: fifoQueueOne
+        MessageRetentionPeriod: 120
+        VisibilityTimeout: 10
         FifoQueue: true
-        ContentBasedDeduplication: true
+        RedrivePolicy:
+          deadLetterTargetArn:
+            Fn::GetAtt:
+              - fifoQueueOne
+              - Arn
+          maxReceiveCount: 3

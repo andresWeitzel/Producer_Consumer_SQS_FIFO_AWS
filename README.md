@@ -38,6 +38,8 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
  
  <br>
 
+ `Importante` : Para el uso de colas de tipo FIFO, según la opción de uso de elasticmq como server, es necesario que se tenga la versión 0.15.4 del .jar en adelante para la correcta ejecución de las mismas.
+
 <br>
 
 </details>
@@ -48,8 +50,10 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
 <details>
   <summary>Ver</summary>
 
-* Instalamos la JDK de Java (>8) para usar docker.
-* Instalamos Docker para correr la imagen de elasticmq. 
+* Creamos un entorno de trabajo a través de algún ide, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre la misma
+```git
+cd 'projectRootName'
+```
 * Una vez creado un entorno de trabajo a través de algún ide, clonamos el proyecto
 ```git
 git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
@@ -58,6 +62,7 @@ git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
 ```git
 cd 'projectName'
 ```
+* Instalamos la última versión LTS de [Nodejs(v18)](https://nodejs.org/en/download)
 * Instalamos Serverless Framework de forma global si es que aún no lo hemos realizado
 ```git
 npm install -g serverless
@@ -89,18 +94,18 @@ npm i
 
     #SQS
     RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
-
-
-
   ```
-* Abrimos una terminal/cmd y creamos el contenedor de [elasticmq-native](https://hub.docker.com/r/softwaremill/elasticmq-native/) con docker.
+* El siguiente script configurado en el package.json del proyecto es el encargado de
+   * Levantar serverless-offline (serverless-offline)
  ```git
- docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
- ```
-* Abrimos la herramienta de docker y ejecutamos el container  
-* Ejecutamos el proyecto
+  "scripts": {
+    "serverless-offline": "sls offline start",
+    "start": "npm run serverless-offline"
+  },
+```
+* Ejecutamos la app desde terminal.
 ```git
-sls offline start
+npm start
 ```
  
  
@@ -115,11 +120,19 @@ sls offline start
  
  <br>
  
-  
-* Creamos un entorno de trabajo a través de algún ide, luego de crear una carpeta nos posicionamos sobre la misma
+* Creamos un entorno de trabajo a través de algún ide, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre la misma
+```git
+cd 'projectRootName'
+```
+* Una vez creado un entorno de trabajo a través de algún ide, clonamos el proyecto
+```git
+git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
+```
+* Nos posicionamos sobre el proyecto
 ```git
 cd 'projectName'
 ```
+* Instalamos la última versión LTS de [Nodejs(v18)](https://nodejs.org/en/download)
 * Instalamos Serverless Framework de forma global si es que aún no lo hemos realizado
 ```git
 npm install -g serverless
@@ -136,31 +149,238 @@ serverless create --template aws-nodejs
 ```git
 npm init -y
 ```
-* Instalamos serverless offline 
+* Instalamos serverless offline y agregamos el plugin al .yml
 ```git
 npm i serverless-offline --save-dev
 ```
-* Instalamos serverless ssm 
+* Instalamos serverless ssm y agregamos el plugin al .yml
 ```git
 npm i serverless-offline-ssm --save-dev
 ```
-* Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs)
+* Instalamos el aws-sdk para el uso de sqs..
 ```git
-npm i serverless-offline-sqs
+npm i aws-sdk
 ```
-* Instalamos [serverles elasticmq](https://www.npmjs.com/package/serverless-offline-elasticmq)
+* Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs) y agregamos el plugin al .yml
 ```git
-npm i serverless-offline-elasticmq
+npm i serverless-offline-sqs --save-dev
 ```
-* Instalamos docker
-* Creamos el contenedor con la imagen de elasticmq para emular el servicio de colas en memoria
+* [Descargamos el .jar](https://github.com/softwaremill/elasticmq) para la ejecución de elasticmq en local. Click en la parte donde dice download (runs stand-alone (download)).
+* Creamos un directorio en la raíz del proyecto para almacenar el servidor elasticmq.
 ```git
-   docker run --name elasticmq-native -p 9324:9324 -p 9325:9325 softwaremill/elasticmq-native
+mkdir .elasticmq
 ```
-* Ejecutamos el proyecto
+* Incluimos el .jar ahi dentro y creamos un archivo de configuración necesario.
 ```git
-sls offline start
+cd .elasticmq
+mkdir elasticmq.config
 ```
+* Por temas de simplificación partimos de un archivo presetado. Esto es configurable en base a nombres de colas, region, puertos, etc
+```git
+include classpath("application.conf")
+
+node-address {
+    protocol = http
+    host = localhost
+    port = 9324
+    context-path = ""
+}
+
+rest-sqs {
+    enabled = true
+    bind-port = 9324
+    bind-hostname = "127.0.0.1"
+    sqs-limits = strict
+}
+
+generate-node-address = false
+
+queues {
+    "fifoQueueOne" {
+        defaultVisibilityTimeout = 10 seconds
+        delay = 0 seconds
+        receiveMessageWait = 0 seconds
+        deadLettersQueue {
+            name = "fifoQueueOne-deadletter-queue"
+            maxReceiveCount = 3
+        }
+        fifo = false
+        contentBasedDeduplication = false
+    }
+    fifoQueueOne-deadletter-queue {
+        fifo = false
+    }
+}
+
+aws {
+    region = us-east-1
+    accountId = 000000000000
+}
+```
+* En base a esta config, declaramos la misma en el .yml para que por cada ejecución de serverless, se creen los recursos, la config anterior del archivo elasticmq.config es para que la tome el server de elastic.mq
+* Seteamos los recursos de cola en el .yml
+```git
+resources:
+  Resources:
+    myFirstQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: myFirstQueue
+        MessageRetentionPeriod: 1209600
+        RedrivePolicy:
+          deadLetterTargetArn:
+            Fn::GetAtt:
+              - myFirstQueue
+              - Arn
+          maxReceiveCount: 3
+        VisibilityTimeout: 10
+```
+* Luego seteamos serverless-offline-sqs
+```git  
+serverless-offline-sqs:
+    sqsHost: 127.0.0.1
+    sqsPort: 9324
+    autoCreate: false
+    apiVersion: "latest"
+    endpoint: http://127.0.0.1:9324
+    region: us-east-1
+    accessKeyId: local
+    secretAccessKey: local
+    skipCacheInvalidation: false 
+```
+* Seteamos la lambda en el .yml...resumiendo...nos quedaria el serverless.yml de la sig manera
+```git
+service: aws-sqs-offline
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  apiGateway:
+    apiKeys:
+      - name : xApiKey
+        value : 'f98d8cd98h73s204e3456998ecl9427j'
+
+
+plugins:
+  - serverless-offline-sqs
+  - serverless-offline  
+
+functions:
+  hello:
+    handler: handler.hello
+
+  QueueSendMessage:
+    handler: handler.sendMessage
+    name: Queue-SendMessage-Lambda
+    description: to send sqs message
+    events:
+      - http:
+          method: POST
+          path: sender-queue
+          private: true
+
+  QueueReceiveMessage:
+    handler: handler.receiveMessage
+    name: Queue-ReceiveMessage-Lambda
+    description: to receive sqs message
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - myFirstQueue
+              - Arn
+          batchSize: 10  
+
+custom :
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4002
+    useChildProcesses: false
+  serverless-offline-sqs:
+    sqsHost: 127.0.0.1
+    sqsPort: 9324
+    autoCreate: false
+    apiVersion: "latest"
+    endpoint: http://127.0.0.1:9324
+    region: us-east-1
+    accessKeyId: local
+    secretAccessKey: local
+    skipCacheInvalidation: false      
+
+resources:
+  Resources:
+    myFirstQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: myFirstQueue
+        MessageRetentionPeriod: 1209600
+        RedrivePolicy:
+          deadLetterTargetArn:
+            Fn::GetAtt:
+              - myFirstQueue
+              - Arn
+          maxReceiveCount: 3
+        VisibilityTimeout: 10
+
+```
+* Creamos el archivo handler que sera una lambda donde emule el envío y recibimiento de mensajes
+```git
+odule.exports.sendMessage = async (event) => {
+  const AWS = require("aws-sdk");
+  const SQS = new AWS.SQS({
+    accessKeyId: "local",
+    secretAccessKey: "local",
+    endpoint: "127.0.0.1:9324"
+  });
+
+  try {
+
+    const queueParams = {
+      Entries: [
+        {
+          Id: "1",
+          MessageBody: "this is a message body",
+        }
+      ],
+      QueueUrl: 'http://127.0.0.1:9324/queue/myFirstQueue'
+    }
+
+    const result = await SQS.sendMessageBatch(queueParams).promise();
+    console.log(JSON.stringify(result, null, 2));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+
+
+
+module.exports.receiveMessage = async (event) => {
+  console.log(JSON.stringify(event.Records, null, 2));
+};
+```
+* Instalamos la dependencia para la ejecución de scripts en paralelo
+``` git
+npm i concurrently
+``` 
+* El siguiente script configurado en el package.json del proyecto es el encargado de
+* Levantar el server de elasticmq
+* Levantar serverless-offline
+```git
+  "scripts": {
+    "serverless-offline": "sls offline start",
+    "queue-start": "java -Dconfig.file=.elasticmq/elasticmq.config -jar .elasticmq/elasticmq-server-0.15.4.jar",
+    "start": "concurrently --kill-others \"npm run queue-start\" \"npm run serverless-offline\""
+  },
+```
+* Ejecutamos la app desde terminal.
+```git
+npm start
+```
+* `Importante: ` El ejemplo base descrito podemos visualizarlo en otro repositorio. Dirigirse a [SQS-offline-example-aws](https://github.com/andresWeitzel/SQS-offline-example-aws)
 
 
 </details>
@@ -185,7 +405,6 @@ sls offline start
 | [Elastic MQ](https://github.com/softwaremill/elasticmq) | 1.3 | Interfaz compatible con SQS (msg memory) | 
 | [Amazon Api Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
 | [NodeJS](https://nodejs.org/en/) | 14.18.1  | Librería JS |
-| [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) | 4.12.0 | Herramienta para contenedores |
 | [VSC](https://code.visualstudio.com/docs) | 1.72.2  | IDE |
 | [Postman](https://www.postman.com/downloads/) | 10.11  | Cliente Http |
 | [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
@@ -203,7 +422,6 @@ sls offline start
 | serverless-offline |  https://www.serverless.com/plugins/serverless-offline |
 | serverless-offline-ssm |  https://www.npmjs.com/package/serverless-offline-ssm |
 | serverless-offline-sqs | https://www.npmjs.com/package/serverless-offline-sqs |
-| serverless-offline-elasticmq | https://www.npmjs.com/package/serverless-offline-elasticmq |
 
 
 </br>

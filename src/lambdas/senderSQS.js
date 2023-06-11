@@ -1,64 +1,26 @@
-//Environment Vars
-const REGION = process.env.REGION;
-const RECEIVER_QUEUE_URL = process.env.RECEIVER_QUEUE_URL;
+module.exports.handler = async (event) => {
+  const AWS = require("aws-sdk");
+  const SQS = new AWS.SQS({
+    accessKeyId: "local",
+    secretAccessKey: "local",
+    endpoint: "127.0.0.1:9324"
+  });
 
-//External
-var AWS = require("aws-sdk");
+  try {
 
-//Helpers
-const { requestResult } = require("../helpers/http/bodyResponse");
-const { statusCode } = require("../enums/http/statusCode");
-
-//Const/Vars
-const sqs = new AWS.SQS({
-  region: REGION,
-});
-const queueUrl = RECEIVER_QUEUE_URL;
-let accountId;
-let response;
-
-module.exports.handler = function (event, context, callback) {
-  
-  response = null;
-  accountId = context.invokedFunctionArn.split(":")[4];
-
-  // response and status of HTTP endpoint
-  var responseBody = {
-    message: "",
-  };
-
-  // SQS message parameters
-  var params = {
-    MessageBody: event.body,
-    QueueUrl: queueUrl,
-    MessageAttributes: {
-        AttributeName: {
-          StringValue: "Attribute Value",
-          DataType: "String",
-        },
-      },
-  };
-
-  sqs.sendMessage(params, async function (err, data) {
-    if (err) {
-      let msg = "Failed to send message" + err;
-
-      response = await requestResult(
-        statusCode.INTERNAL_SERVER_ERROR,
-        msg,
-        event
-      );
-
-      console.log(msg);
-    } else {
-      console.log("data:", data.MessageId);
-      responseBody.message = "Sent to " + queueUrl;
-      responseBody.QueueUrl = data.QueueUrl;
-      responseBody.messageId = data.MessageId;
-
-      response = await requestResult(statusCode.OK, responseBody, event);
+    const queueParams = {
+      Entries: [
+        {
+          Id: "1",
+          MessageBody: "this is a message body",
+        }
+      ],
+      QueueUrl: 'http://127.0.0.1:9324/queue/fifoQueueOne'
     }
 
-    callback(null, response);
-  });
+    const result = await SQS.sendMessageBatch(queueParams).promise();
+    console.log(JSON.stringify(result, null, 2));
+  } catch (e) {
+    console.error(e);
+  }
 };
