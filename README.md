@@ -80,7 +80,7 @@ npm i
   * New file
   * Creamos el archivo con el name `serverless.ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
   * Añadimos las ssm necesarias dentro del archivo.
-  ```git
+```git
   # Keys
   X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
   BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
@@ -95,16 +95,14 @@ npm i
   SQS_PORT: 9324
   SQS_API_VERSION: "latest"
   SQS_URL: 'http://127.0.0.1:9324'
-  RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
 
   #QUEUE CONFIG
-  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne'
-  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne'
+  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne.fifo'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne.fifo'
 
   # SERVERLESS CONFIG
   SERVERLESS_HTTP_PORT : 4000
   SERVERLESS_LAMBDA_PORT : 4002
-
   ```
 * El siguiente script configurado en el package.json del proyecto es el encargado de
    * Levantar serverless-offline (serverless-offline)
@@ -188,16 +186,14 @@ npm i aws-sdk
   SQS_PORT: 9324
   SQS_API_VERSION: "latest"
   SQS_URL: 'http://127.0.0.1:9324'
-  RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
 
   #QUEUE CONFIG
-  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne'
-  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne'
+  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne.fifo'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne.fifo'
 
   # SERVERLESS CONFIG
   SERVERLESS_HTTP_PORT : 4000
   SERVERLESS_LAMBDA_PORT : 4002
-
   ```
 * Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs) y agregamos el plugin al .yml
 ```git
@@ -234,19 +230,19 @@ rest-sqs {
 generate-node-address = false
 
 queues {
-    "fifoQueueOne" {
+    "fifoQueueOne.fifo" {
         defaultVisibilityTimeout = 10 seconds
         delay = 0 seconds
         receiveMessageWait = 0 seconds
         deadLettersQueue {
-            name = "fifoQueueOne-deadletter-queue"
+            name = "fifoQueueOne.fifo-deadletter-queue"
             maxReceiveCount = 3
         }
-        fifo = false
-        contentBasedDeduplication = false
+        fifo = true
+        contentBasedDeduplication = true
     }
-    fifoQueueOne-deadletter-queue {
-        fifo = false
+    fifoQueueOne.fifo-deadletter-queue {
+        fifo = true
     }
 }
 
