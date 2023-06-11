@@ -18,18 +18,23 @@ module.exports.handler = async (event) => {
 
   try {
 
-    const queueParams = {
-      Entries: [
-        {
-          Id: "1",
-          MessageBody: "this is a message body",
-        }
-      ],
-      QueueUrl: QUEUE_FIFO_ONE_URL
-    }
+  // SQS message parameters
+  var queueParams = {
+    //MessageBody: event.body,
+    MessageBody: 'Message for send',
+    QueueUrl: QUEUE_FIFO_ONE_URL,
+    MessageAttributes: {
+        AttributeName: {
+          StringValue: "Attribute Value",
+          DataType: "String",
+        },
+      },
+  };
 
-    const result = await SQS.sendMessageBatch(queueParams).promise();
+    const result = await SQS.sendMessage(queueParams).promise();
+
     console.log(JSON.stringify(result, null, 2));
+
   } catch (e) {
     console.error(e);
   }
