@@ -2,7 +2,7 @@ Resources:
     fifoQueueOne:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: fifoQueueOne.fifo
+        QueueName: queue-one.fifo
         MessageRetentionPeriod: 120
         VisibilityTimeout: 10
         FifoQueue: true

@@ -54,7 +54,7 @@ custom:
   serverless-offline-sqs:  
     sqsHost: ${file(./serverless.ssm.yml):SQS_HOST}
     sqsPort: ${file(./serverless.ssm.yml):SQS_PORT}
-    autoCreate: true
+    autoCreate: false
     apiVersion: ${file(./serverless.ssm.yml):SQS_API_VERSION}
     endpoint: ${file(./serverless.ssm.yml):SQS_URL}
     region: ${file(./serverless.ssm.yml):AWS_REGION}

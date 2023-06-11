@@ -7,9 +7,11 @@ const { statusCode } = require("../enums/http/statusCode");
 const { value } = require("../enums/general/values");
 //Helpers
 const { requestResult } = require("../helpers/http/requestResult");
+const { generateUuidV4 } = require("../helpers/math/generateUuid");
 const { sqsClient } = require("../helpers/sqs/configuration/sqsClient");
 //Const-vars
 let client;
+let uuid;
 let msg;
 let code;
 
@@ -17,27 +19,16 @@ module.exports.handler = async (event) => {
   try {
     client = await sqsClient();
 
+    uuid = await generateUuidV4();
+
     const command = new SendMessageCommand({
       QueueUrl: QUEUE_FIFO_ONE_URL,
       DelaySeconds: 0,
-      MessageDeduplicationId: "STRING_VALUE",
-      MessageGroupId: "STRING_VALUE",
+      MessageDeduplicationId: uuid,
+      MessageGroupId: uuid,
       MessageBody:
-        "Information about current NY Times fiction bestseller for week of 12/11/2016.",
-      MessageAttributes: {
-        Title: {
-          DataType: "String",
-          StringValue: "The Whistler",
-        },
-        Author: {
-          DataType: "String",
-          StringValue: "John Grisham",
-        },
-        WeeksOn: {
-          DataType: "Number",
-          StringValue: "6",
-        },
-      },
+        "information about sending the message",
+      MessageAttributes: JSON.parse(event.body)
     });
 
     const response = await client.send(command);

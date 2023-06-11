@@ -19,7 +19,15 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
  - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
  - [1.2) Configurar el proyecto serverless desde cero](#12-configurar-el-proyecto-serverless-desde-cero-)
  - [1.3) Tecnologías.](#13-tecnologías-)
- - [1.4) Referencias.](#14-referencias-)
+
+ ### Sección 2) Endpoints y Ejemplos 
+ 
+ - [2.0) EndPoints y recursos.](#20-endpoints-y-recursos-)
+
+### Sección 3) Prueba de funcionalidad y Referencias
+ 
+ - [3.0) Prueba de funcionalidad.](#30-prueba-de-funcionalidad-)
+ - [3.1) Referencias.](#31-referencias-)
 
 <br>
 
@@ -97,8 +105,8 @@ npm i
   SQS_URL: 'http://127.0.0.1:9324'
 
   #QUEUE CONFIG
-  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne.fifo'
-  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne.fifo'
+  QUEUE_FIFO_ONE_NAME : 'queue-one.fifo'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/queue-one.fifo'
 
   # SERVERLESS CONFIG
   SERVERLESS_HTTP_PORT : 4000
@@ -188,8 +196,8 @@ npm i aws-sdk
   SQS_URL: 'http://127.0.0.1:9324'
 
   #QUEUE CONFIG
-  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne.fifo'
-  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne.fifo'
+  QUEUE_FIFO_ONE_NAME : 'queue-one.fifo'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/queue-one.fifo'
 
   # SERVERLESS CONFIG
   SERVERLESS_HTTP_PORT : 4000
@@ -230,18 +238,18 @@ rest-sqs {
 generate-node-address = false
 
 queues {
-    "fifoQueueOne.fifo" {
+    "queue-one.fifo" {
         defaultVisibilityTimeout = 10 seconds
         delay = 0 seconds
         receiveMessageWait = 0 seconds
         deadLettersQueue {
-            name = "fifoQueueOne.fifo-deadletter-queue"
+            name = "queue-one.fifo-deadletter-queue"
             maxReceiveCount = 3
         }
         fifo = true
         contentBasedDeduplication = true
     }
-    fifoQueueOne.fifo-deadletter-queue {
+    queue-one.fifo-deadletter-queue {
         fifo = true
     }
 }
@@ -468,14 +476,154 @@ npm start
 | YAML - Autoformatter .yml (alt+shift+f) |
 | DotENV |
 
-
-
 <br>
 
 </details>
 
 
-### 1.4) Referencias [🔝](#índice-)
+
+
+<br>
+
+
+## Sección 2) Endpoints y Ejemplos. 
+
+
+### 2.0) Endpoints y recursos [🔝](#índice-) 
+
+<details>
+  <summary>Ver</summary>
+<br>
+
+### 2.1.0) Variables en Postman
+
+| **Variable** | **Initial value** | **Current value** |               
+| ------------- | ------------- | ------------- |
+| base_url | http://localhost:4000/dev  | http://localhost:4000/dev |
+| x-api-key | f98d8cd98h73s204e3456998ecl9427j  | f98d8cd98h73s204e3456998ecl9427j |
+| bearer_token | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c  | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c |
+
+<br>
+
+<br>
+
+### 2.1.1) Listar todas las colas creadas (desde navegador)
+#### Request cURL
+``` postman
+curl --location --request GET 'http://localhost:9324/?Action=ListQueues'
+```
+
+#### Response
+``` postman
+  <ListQueuesResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
+                  <ListQueuesResult>
+                    <QueueUrl>http://localhost:9324/queue/queue-one</QueueUrl><QueueUrl>http://localhost:9324/queue/queue-one.fifo</QueueUrl>
+                  </ListQueuesResult>
+                  <ResponseMetadata>
+                    <RequestId>00000000-0000-0000-0000-000000000000</RequestId>
+                  </ResponseMetadata>
+                </ListQueuesResponse>
+```
+
+<br>
+
+<br>
+
+### 2.1.2) Encolar un mensaje en la cola fifo (desde navegador)
+#### Request
+``` postman
+curl --location --request GET 'http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX'
+```
+
+#### Response
+``` postman
+<SendMessageResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
+                <SendMessageResult>
+                  
+                  <MD5OfMessageBody>eb61eead90e3b899c6bcbe27ac581660</MD5OfMessageBody>
+                  <MessageId>ead221b3-5ec5-4e00-b69a-fabd46f003fd</MessageId>
+                </SendMessageResult>
+                <ResponseMetadata>
+                  <RequestId>00000000-0000-0000-0000-000000000000</RequestId>
+                </ResponseMetadata>
+              </SendMessageResponse>
+```
+
+<br>
+
+<br>
+
+### 2.1.3) Encolar un mensaje desde postman
+#### Request
+``` postman
+curl --location 'http://localhost:4000/dev/sender-queue/' \
+--header 'x-api-key: f98d8cd98h73s204e3456998ecl9427j' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' \
+--header 'Content-Type: application/json' \
+--data '{
+        "JsonObject": {
+          "DataType": "String",
+          "StringValue": "Example for sender an object inside de MessageAttributes"
+        }
+}'
+```
+
+#### Response
+``` postman
+{
+    "message": {
+        "middlewareStack": {},
+        "input": {
+            "QueueUrl": "http://127.0.0.1:9324/queue/queue-one.fifo",
+            "DelaySeconds": 0,
+            "MessageDeduplicationId": "33fbc227-08c7-4bf3-90b4-c705f51f7e4e",
+            "MessageGroupId": "33fbc227-08c7-4bf3-90b4-c705f51f7e4e",
+            "MessageBody": "information about sending the message",
+            "MessageAttributes": {
+                "JsonObject": {
+                    "DataType": "String",
+                    "StringValue": "Example for sender an object inside de MessageAttributes"
+                }
+            }
+        }
+    }
+}
+```
+
+<br>
+
+<br>
+
+### 2.1.4) Eliminar un objeto pago
+#### Request
+``` postman
+```
+
+#### Response
+``` postman
+```
+
+<br>
+
+</details>
+
+<br>
+
+
+## Sección 3) Prueba de funcionalidad y Referencias. 
+
+
+### 3.0) Prueba de funcionalidad [🔝](#índice-) 
+
+<details>
+  <summary>Ver</summary>
+<br>
+
+</details>
+
+
+
+### 3.1) Referencias [🔝](#índice-)
 
 <details>
   <summary>Ver</summary>
