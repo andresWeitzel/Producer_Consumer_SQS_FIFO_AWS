@@ -1,9 +1,19 @@
+//Environment Vars
+const REGION = process.env.AWS_REGION;
+const ACCESS_KEY = process.env.AWS_ACCESS_KEY_RANDOM_VALUE;
+const SECRET_KEY = process.env.AWS_SECRET_KEY_RANDOM_VALUE;
+const ENDPOINT = process.env.SQS_URL;
+const QUEUE_FIFO_ONE_URL = process.env. QUEUE_FIFO_ONE_URL; 
+
+
 module.exports.handler = async (event) => {
+
   const AWS = require("aws-sdk");
+  
   const SQS = new AWS.SQS({
-    accessKeyId: "local",
-    secretAccessKey: "local",
-    endpoint: "127.0.0.1:9324"
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_KEY,
+    endpoint: ENDPOINT
   });
 
   try {
@@ -15,7 +25,7 @@ module.exports.handler = async (event) => {
           MessageBody: "this is a message body",
         }
       ],
-      QueueUrl: 'http://127.0.0.1:9324/queue/fifoQueueOne'
+      QueueUrl: QUEUE_FIFO_ONE_URL
     }
 
     const result = await SQS.sendMessageBatch(queueParams).promise();

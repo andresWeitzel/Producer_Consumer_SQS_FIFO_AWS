@@ -49,17 +49,17 @@ resources:
 
 custom:
   serverless-offline:
-    httpPort: 4000
-    lambdaPort: 4002
+    httpPort: ${file(./serverless.ssm.yml):SERVERLESS_HTTP_PORT}
+    lambdaPort: ${file(./serverless.ssm.yml):SERVERLESS_LAMBDA_PORT}
   serverless-offline-sqs:  
-    sqsHost: 127.0.0.1
-    sqsPort: 9324
+    sqsHost: ${file(./serverless.ssm.yml):SQS_HOST}
+    sqsPort: ${file(./serverless.ssm.yml):SQS_PORT}
     autoCreate: true
-    apiVersion: "latest"
-    endpoint: http://127.0.0.1:9324
-    region: us-east-1
-    accessKeyId: local
-    secretAccessKey: local
+    apiVersion: ${file(./serverless.ssm.yml):SQS_API_VERSION}
+    endpoint: ${file(./serverless.ssm.yml):SQS_URL}
+    region: ${file(./serverless.ssm.yml):AWS_REGION}
+    accessKeyId: ${file(./serverless.ssm.yml):AWS_ACCESS_KEY_RANDOM_VALUE}
+    secretAccessKey: ${file(./serverless.ssm.yml):AWS_SECRET_KEY_RANDOM_VALUE}
     skipCacheInvalidation: false
   serverless-offline-ssm:
     stages:

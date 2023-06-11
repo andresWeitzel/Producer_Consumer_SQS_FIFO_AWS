@@ -81,19 +81,30 @@ npm i
   * Creamos el archivo con el name `serverless.ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
   * Añadimos las ssm necesarias dentro del archivo.
   ```git
-   # Keys
-    X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
+  # Keys
+  X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
+  BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 
-    BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+  #GRAL CONFIG
+  AWS_REGION : 'us-east-1'
+  AWS_ACCESS_KEY_RANDOM_VALUE: 'xxxx'
+  AWS_SECRET_KEY_RANDOM_VALUE: 'xxxx'
 
-    # Test
-    HELLO_TEST : 'HELLO_SSM_TEST'
+  #SQS CONFIG
+  SQS_HOST: 127.0.0.1
+  SQS_PORT: 9324
+  SQS_API_VERSION: "latest"
+  SQS_URL: 'http://127.0.0.1:9324'
+  RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
 
-    #Config
-    REGION : 'eu-west-1'
+  #QUEUE CONFIG
+  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne'
 
-    #SQS
-    RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
+  # SERVERLESS CONFIG
+  SERVERLESS_HTTP_PORT : 4000
+  SERVERLESS_LAMBDA_PORT : 4002
+
   ```
 * El siguiente script configurado en el package.json del proyecto es el encargado de
    * Levantar serverless-offline (serverless-offline)
@@ -161,6 +172,33 @@ npm i serverless-offline-ssm --save-dev
 ```git
 npm i aws-sdk
 ```
+* Seteamos todas las variables de entorno del proyecto
+```git
+  # Keys
+  X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
+  BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+
+  #GRAL CONFIG
+  AWS_REGION : 'us-east-1'
+  AWS_ACCESS_KEY_RANDOM_VALUE: 'xxxx'
+  AWS_SECRET_KEY_RANDOM_VALUE: 'xxxx'
+
+  #SQS CONFIG
+  SQS_HOST: 127.0.0.1
+  SQS_PORT: 9324
+  SQS_API_VERSION: "latest"
+  SQS_URL: 'http://127.0.0.1:9324'
+  RECEIVER_QUEUE_URL : 'http://localhost:9324/queue/Receiver-Queue'
+
+  #QUEUE CONFIG
+  QUEUE_FIFO_ONE_NAME : 'fifoQueueOne'
+  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/fifoQueueOne'
+
+  # SERVERLESS CONFIG
+  SERVERLESS_HTTP_PORT : 4000
+  SERVERLESS_LAMBDA_PORT : 4002
+
+  ```
 * Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs) y agregamos el plugin al .yml
 ```git
 npm i serverless-offline-sqs --save-dev
