@@ -56,7 +56,7 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
 * `Importante` : Para el uso de colas de tipo FIFO, según la opción de uso de elasticmq como server, es necesario que se tenga la versión 0.15.4 del .jar en adelante para la correcta ejecución de las mismas.
 
 
- ### 1.0.1) Descripción Arquitectura y Funcionamiento
+### 1.0.1) Descripción Arquitectura y Funcionamiento
  
  * La imagen de la arquitectura de aws empleada describe el flujo de funcionamiento del sistema de envío de mensajes a través de SQS de forma general. Cualquier petición hacia el mismo, parte desde un cliente (Postman, navegador, etc). 
  * `Paso 1` : Dicha solicitud es recibida por el api-gateway y solamente se validará si es que dentro de los encabezados de dicha solicitud se encuentra la x-api-key correcta. Existe la excepción de encolar mensajes desde una URI de referencia (http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX), pero sin pasar por la lambda sender
@@ -144,7 +144,7 @@ npm i
 npm start
 ```
 * Si se presenta algún mensaje indicando qué el puerto 9324 ya está en uso, podemos terminar todos los procesos dependientes y volver a ejecutar la app
-* ```git
+```git
 npx kill-port 9324
 npm start
 ```
@@ -447,7 +447,7 @@ npm i concurrently
 npm start
 ```
 * Si se presenta algún mensaje indicando qué el puerto 9324 ya está en uso, podemos terminar todos los procesos dependientes y volver a ejecutar la app
-* ```git
+```git
 npx kill-port 9324
 npm start
 ```
@@ -524,7 +524,7 @@ npm start
   <summary>Ver</summary>
 <br>
 
-### 2.1.0) Variables en Postman
+### 2.0.1) Variables en Postman
 
 | **Variable** | **Initial value** | **Current value** |               
 | ------------- | ------------- | ------------- |
@@ -536,7 +536,7 @@ npm start
 
 <br>
 
-### 2.1.1) Listar todas las colas creadas (desde navegador)
+### 2.0.2) Listar todas las colas creadas (desde navegador)
 #### Request cURL
 ``` postman
 curl --location --request GET 'http://localhost:9324/?Action=ListQueues'
@@ -558,7 +558,7 @@ curl --location --request GET 'http://localhost:9324/?Action=ListQueues'
 
 <br>
 
-### 2.1.2) Encolar un mensaje en la cola fifo (desde navegador)
+### 2.0.3) Encolar un mensaje en la cola fifo (desde navegador)
 #### Request
 ``` postman
 curl --location --request GET 'http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX'
@@ -582,7 +582,7 @@ curl --location --request GET 'http://localhost:9324/000000000000/queue-one.fifo
 
 <br>
 
-### 2.1.3) Encolar un mensaje desde postman
+### 2.0.4) Encolar un mensaje desde postman
 #### Request
 ``` postman
 curl --location 'http://localhost:4000/dev/sender-queue/' \
