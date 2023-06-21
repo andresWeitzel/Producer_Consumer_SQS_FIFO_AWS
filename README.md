@@ -193,9 +193,9 @@ npm i serverless-offline --save-dev
 ```git
 npm i serverless-offline-ssm --save-dev
 ```
-* Instalamos el aws-sdk para el uso de sqs..
+* Instalamos el plugin @aws-sdk/client-sqs para el uso de sqs..
 ```git
-npm i aws-sdk
+npm i @aws-sdk/client-sqs
 ```
 * Seteamos todas las variables de entorno del proyecto
 ```git
