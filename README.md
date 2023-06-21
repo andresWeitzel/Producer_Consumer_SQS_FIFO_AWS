@@ -441,6 +441,11 @@ npm i concurrently
 ```git
 npm start
 ```
+* Si se presenta algún mensaje indicando qué el puerto 9324 ya está en uso, podemos terminar todos los procesos dependientes y volver a ejecutar la app
+* ```git
+npx kill-port 9324
+npm start
+```
 * `Importante: ` El ejemplo base descrito podemos visualizarlo en otro repositorio. Dirigirse a [SQS-offline-example-aws](https://github.com/andresWeitzel/SQS-offline-example-aws)
 
 
