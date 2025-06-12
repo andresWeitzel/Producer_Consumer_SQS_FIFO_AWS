@@ -102,35 +102,6 @@ sls -v
 ```git
 npm i
 ```
-* Creamos un archivo para almacenar las variables ssm utilizadas en el proyecto (Más allá que sea un proyecto con fines no comerciales es una buena práctica utilizar variables de entorno).
-  * Click der sobre la raíz del proyecto
-  * New file
-  * Creamos el archivo con el name `serverless.ssm.yml`. Este deberá estar a la misma altura que el serverless.yml
-  * Añadimos las ssm necesarias dentro del archivo.
-```git
-  # Keys
-  X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
-  BEARER_TOKEN : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-
-  #GRAL CONFIG
-  AWS_REGION : 'us-east-1'
-  AWS_ACCESS_KEY_RANDOM_VALUE: 'xxxx'
-  AWS_SECRET_KEY_RANDOM_VALUE: 'xxxx'
-
-  #SQS CONFIG
-  SQS_HOST: 127.0.0.1
-  SQS_PORT: 9324
-  SQS_API_VERSION: "latest"
-  SQS_URL: 'http://127.0.0.1:9324'
-
-  #QUEUE CONFIG
-  QUEUE_FIFO_ONE_NAME : 'queue-one.fifo'
-  QUEUE_FIFO_ONE_URL: 'http://127.0.0.1:9324/queue/queue-one.fifo'
-
-  # SERVERLESS CONFIG
-  SERVERLESS_HTTP_PORT : 4000
-  SERVERLESS_LAMBDA_PORT : 4002
-  ```
 * El siguiente script configurado en el package.json del proyecto es el encargado de
    * Levantar serverless-offline (serverless-offline)
  ```git
