@@ -1,70 +1,195 @@
-![Index app](./doc/assets/img/Producer_Consumer_SQS_FIFO_AWS.drawio.png)
 
-# Producer_Consumer_SQS_FIFO_AWS
-Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, aws sdk-v3, ElasticMQ, entre otros.
+![Index app](./doc/assets/Producer_Consumer_SQS_FIFO_AWS.drawio.png)
 
-* [Playlist proyecto](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+<div align="right">
+
+  <img width="25" height="25" src="./doc/assets/icons/devops/png/aws.png" />
+  <img width="25" height="25" src="./doc/assets/icons/aws/png/lambda.png" />
+  <img width="27" height="27" src="./doc/assets/icons/devops/png/postman.png" />
+  <img width="29" height="27" src="./doc/assets/icons/devops/png/git.png" />
+  <img width="28" height="27" src="./doc/assets/icons/aws/png/api-gateway.png" />
+  <img width="23" height="25" src="./doc/assets/icons/aws/png/sqs.png" />
+  <img width="27" height="25" src="./doc/assets/icons/aws/png/parameter-store.png" />
+  <img width="27" height="27" src="./doc/assets/icons/backend/javascript-typescript/png/nodejs.png" />
+
+</div>
+
+<br>
+
+<br>
+
+
+<div align="right"> 
+  <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/translation/README.es.md">
+    <img width="65" height="40" src="./doc/assets/translation/arg-flag.jpg" />
+  </a> 
+  <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/README.md">
+    <img width="65" height="40" src="./doc/assets/translation/eeuu-flag.jpg" />
+  </a> 
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+
+# Producer_Consumer_SQS_FIFO_AWS ![Status](./doc/assets/icons/badges/status-completed.svg)
+
+</div>
+
+Communication between producer and consumer with manual and automatic processing using AWS SQS FIFO queues, implemented with Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, aws sdk-v3, ElasticMQ, among others.
+
+* [Functional tests playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb) <a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank"> <img src="./doc/assets/social-networks/yt.png" width="25" /></a>
 
 
 <br>
 
-## Índice 📜
+## Table of Contents 📜
 
 <details>
- <summary> Ver </summary>
- 
- <br>
- 
-### Sección 1) Descripción, Tecnologías y Referencias
-
- - [1.0) Descripción del Proyecto.](#10-descripción-)
- - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
- - [1.2) Configurar el proyecto serverless desde cero](#12-configurar-el-proyecto-serverless-desde-cero-)
- - [1.3) Tecnologías.](#13-tecnologías-)
-
- ### Sección 2) Endpoints y Ejemplos 
- 
- - [2.0) EndPoints y recursos.](#20-endpoints-y-recursos-)
-
-### Sección 3) Prueba de funcionalidad y Referencias
- 
- - [3.0) Prueba de funcionalidad.](#30-prueba-de-funcionalidad-)
- - [3.1) Referencias.](#31-referencias-)
+<summary>See</summary>
 
 <br>
+
+### Section 1) Description, Technologies and References
+
+* [1.0) Project Description.](#10-project-description)
+* [1.1) Project Execution.](#11-project-execution)
+* [1.2) Configure the serverless project from scratch](#12-configure-the-serverless-project-from-scratch)
+* [1.3) Technologies.](#13-technologies)
+
+### Section 2) Endpoints and Examples
+
+* [2.0) Endpoints and resources.](#20-endpoints-and-resources)
+* [2.1) Message Processing Patterns.](#21-message-processing-patterns)
+
+### Section 3) Functionality Test and References
+
+* [3.0) Functionality Test.](#30-functionality-test)
+* [3.1) References.](#31-references)
 
 </details>
 
 
 <br>
 
-## Sección 1) Descripción, Tecnologías y Dependencias 
+## Section 1) Description, Technologies and Dependencies 
 
 
-### 1.0) Descripción [🔝](#índice-) 
+### 1.0) Description [🔝](#table-of-contents-) 
 
 <details>
   <summary>Ver</summary>
  
  <br>
 
-### 1.0.0) Descripción General
+### 1.0.0) Description General
 
- Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, Docker, ElasticMQ, entre otros.
+ This project implements a communication system between producer and consumer using AWS SQS FIFO queues, with support for manual and automatic message processing.
 
-* [Playlist proyecto](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
-* `Importante` : Para el uso de colas de tipo FIFO, según la opción de uso de elasticmq como server, es necesario que se tenga la versión 0.15.4 del .jar en adelante para la correcta ejecución de las mismas.
+* [Project playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+* `Important` : For the use of queues of type FIFO, according to the option of using elasticmq as a server, it is necessary to have version 0.15.4 of the .jar or later for the correct execution of the same.
 
 
-### 1.0.1) Descripción Arquitectura y Funcionamiento
- 
- * La imagen de la arquitectura de aws empleada describe el flujo de funcionamiento del sistema de envío de mensajes a través de SQS de forma general. Cualquier petición hacia el mismo, parte desde un cliente (Postman, navegador, etc). 
- * `Paso 1` : Dicha solicitud es recibida por el api-gateway y solamente se validará si es que dentro de los encabezados de dicha solicitud se encuentra la x-api-key correcta. Existe la excepción de encolar mensajes desde una URI de referencia (http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX), pero sin pasar por la lambda sender
- * `Paso 2` : El api gateway valida la petición y la reenvía hacia la lambda sender. El único punto de acceso es este. (Para la arquitectura planteada)
- * `Paso 3` : La lambda sender realiza las validaciones de las ssm correspondientes con el System Manager Paramater Store.. validan token, valores de sqs definidos (host, puerto, nombres de colas, etc).
- * `Pasos 4` : La lambda sender encola el mensaje en la cola de tipo fifo explicitada para luego ser consumida por la lambda receiver.
- * `Pasos 5` : La lambda receiver imprime el mensaje (objeto de tipo Record) en consola.
- * `Aclaraciones` : Se emula dicho funcionamiento dentro de la misma red y en entorno local con los plugins de serverless correspondientes. 
+### 1.0.1) Description Architecture and Operation
+
+<details>
+<summary><b>System Architecture</b></summary>
+
+> Detailed description of the system architecture and components.
+
+### Main Components
+
+#### 1. API Gateway
+- **Function**: Entry point for all HTTP requests
+- **Endpoints**:
+  - `/sender-queue`: Sending messages
+  - `/list-queue`: Queue status query
+  - `/receive-queue`: Message processing (manual/automatic)
+- **Security**: API Key Validation
+
+#### 2. Lambda Functions
+- **senderSQS.js**:
+  - Sends messages to the FIFO queue
+  - Generates a unique MessageGroupId
+  - Handles message attributes
+  - Returns MessageId
+
+- **receiverSQS.js**:
+  - Manual message processing
+  - Receives specific messages by ReceiptHandle
+  - Deletes messages after processing
+  - Returns processing details
+
+- **receiverSQSAuto.js**:
+  - Automatic message processing
+  - Processes up to 10 messages at a time
+  - Handles errors and retries
+  - Deletes processed messages
+
+#### 3. SQS FIFO Queue
+- **Type**: First-In-First-Out Queue
+- **Features**:
+  - Guaranteed message order
+  - MessageGroupId grouping
+  - Controlled duplication
+  - Configurable retention
+
+#### 4. Systems Manager Parameter Store
+- **Function**: Secure storage of credentials
+- **Parameters**:
+  - AWS credentials
+  - Queue URLs
+  - Environment configurations
+
+### Processing Flows
+
+#### 1. Manual Flow
+1. Client sends message via `/sender-queue`
+2. Lambda senderSQS processes and sends to SQS
+3. Client queries status via `/list-queue`
+4. Client processes specific message via `/receive-queue`
+5. Lambda receiverSQS processes and deletes the message
+
+#### 2. Automatic Flow
+1. Client sends message via `/receive-queue`
+2. Lambda receiverSQSAuto activates automatically
+3. Processes messages in batches
+4. Deletes processed messages
+5. Returns processing results
+
+### Security and Monitoring
+
+#### 1. Security
+- API Key for authentication
+- Credentials in Parameter Store
+- Specific IAM roles
+- Message validation
+
+#### 2. Monitoring
+- CloudWatch Logs
+- SQS Metrics
+- Lambda Traces
+- Queue Status
+
+### Local Development
+
+#### 1. ElasticMQ
+- Emulates SQS locally
+- Configuration in `.elasticmq/elasticmq.config`
+- Default port 9324
+
+#### 2. Serverless Offline
+- Emulates AWS locally
+- Endpoints at `localhost:3000`
+- Local environment variables
+
+#### 3. Postman
+- Collection for testing
+- Configurable environment
+- Automated tests
+</details>
 
 
 <br>
@@ -72,51 +197,54 @@ Comunicación entre lambda producer y lambda consumer utilizando el servicio SQS
 </details>
 
 
-### 1.1) Ejecución del Proyecto [🔝](#índice-)
+### 1.1) Project Execution [🔝](#table-of-contents-)
 
 <details>
   <summary>Ver</summary>
 
-* Creamos un entorno de trabajo a través de algún ide, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre la misma
+* We create a working environment through some ide, we can or cannot create a root folder for the project, we position ourselves over it
 ```git
 cd 'projectRootName'
 ```
-* Una vez creado un entorno de trabajo a través de algún ide, clonamos el proyecto
+* Once we have created a working environment through some ide, we clone the project
 ```git
 git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
 ```
-* Nos posicionamos sobre el proyecto
+* We position ourselves over the project
 ```git
 cd 'projectName'
 ```
-* Instalamos la última versión LTS de [Nodejs(v18)](https://nodejs.org/en/download)
-* Instalamos Serverless Framework de forma global si es que aún no lo hemos realizado
+* We install the latest LTS version of [Nodejs(v18)](https://nodejs.org/en/download)
+* We install Serverless Framework globally if we haven't done it
 ```git
 npm install -g serverless
 ```
-* Verificamos la versión de Serverless instalada
+* We verify the Serverless Framework version installed
 ```git
 sls -v
 ```
-* Instalamos todos los paquetes necesarios
+* We install all necessary packages
 ```git
 npm i
 ```
-* El siguiente script configurado en el package.json del proyecto es el encargado de
-   * Levantar serverless-offline (serverless-offline)
+* The following script configured in the package.json of the project is responsible for
+   * Launching serverless-offline (serverless-offline)
  ```git
   "scripts": {
     "serverless-offline": "sls offline start",
     "start": "npm run serverless-offline"
   },
 ```
-* Ejecutamos la app desde terminal.
+* We launch the app from terminal.
 ```git
 npm start
 ```
-* Si se presenta algún mensaje indicando qué el puerto 9324 ya está en uso, podemos terminar todos los procesos dependientes y volver a ejecutar la app
+* If we get a message indicating that port 9324 is already in use, we can terminate all dependent processes and restart the app
 ```git
 npx kill-port 9324
+```
+* We launch the app from terminal.
+```git
 npm start
 ```
  
@@ -125,55 +253,56 @@ npm start
 
 </details>
 
-### 1.2) Configurar el proyecto serverless desde cero [🔝](#índice-)
+### 1.2) Configure the serverless project from scratch [🔝](#table-of-contents-)
 
 <details>
   <summary>Ver</summary>
  
  <br>
- 
-* Creamos un entorno de trabajo a través de algún ide, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre la misma
+
+* `Important: ` The example base described later can be visualized in another repository. Go to [SQS-offline-example-aws](https://github.com/andresWeitzel/SQS-offline-example-aws) 
+* We create a working environment through some ide, we can or cannot create a root folder for the project, we position ourselves over it
 ```git
 cd 'projectRootName'
 ```
-* Una vez creado un entorno de trabajo a través de algún ide, clonamos el proyecto
+* Once we have created a working environment through some ide, we clone the project
 ```git
 git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
 ```
-* Nos posicionamos sobre el proyecto
+* We position ourselves over the project
 ```git
 cd 'projectName'
 ```
-* Instalamos la última versión LTS de [Nodejs(v18)](https://nodejs.org/en/download)
-* Instalamos Serverless Framework de forma global si es que aún no lo hemos realizado
+* We install the latest LTS version of [Nodejs(v18)](https://nodejs.org/en/download)
+* We install Serverless Framework globally if we haven't done it
 ```git
 npm install -g serverless
 ```
-* Verificamos la versión de Serverless instalada
+* We verify the Serverless Framework version installed
 ```git
 sls -v
 ```
-* Inicializamos un template de serverles
+* We initialize a serverles template
 ```git
 serverless create --template aws-nodejs
 ```
-* Inicializamos un proyecto npm
+* We initialize a project npm
 ```git
 npm init -y
 ```
-* Instalamos serverless offline y agregamos el plugin al .yml
+* We install serverless offline and add the plugin to the .yml
 ```git
 npm i serverless-offline --save-dev
 ```
-* Instalamos serverless ssm y agregamos el plugin al .yml
+* We install serverless ssm and add the plugin to the .yml
 ```git
 npm i serverless-offline-ssm --save-dev
 ```
-* Instalamos el plugin @aws-sdk/client-sqs para el uso de sqs..
+* We install the @aws-sdk/client-sqs plugin for sqs use.
 ```git
 npm i @aws-sdk/client-sqs
 ```
-* Seteamos todas las variables de entorno del proyecto
+* We set all project environment variables
 ```git
   # Keys
   X_API_KEY : 'f98d8cd98h73s204e3456998ecl9427j'
@@ -198,21 +327,21 @@ npm i @aws-sdk/client-sqs
   SERVERLESS_HTTP_PORT : 4000
   SERVERLESS_LAMBDA_PORT : 4002
   ```
-* Instalamos [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs) y agregamos el plugin al .yml
+* We install [serverless SQS](https://www.npmjs.com/package/serverless-offline-sqs) and add the plugin to the .yml
 ```git
 npm i serverless-offline-sqs --save-dev
 ```
-* [Descargamos el .jar](https://github.com/softwaremill/elasticmq) para la ejecución de elasticmq en local. Click en la parte donde dice download (runs stand-alone (download)).
-* Creamos un directorio en la raíz del proyecto para almacenar el servidor elasticmq.
+* [Download the .jar](https://github.com/softwaremill/elasticmq) for the execution of elasticmq in local. Click on the download (runs stand-alone (download)) part.
+* We create a directory in the project root to store the elasticmq server.
 ```git
 mkdir .elasticmq
 ```
-* Incluimos el .jar ahi dentro y creamos un archivo de configuración necesario.
+* We include the .jar inside and create a necessary configuration file.
 ```git
 cd .elasticmq
 mkdir elasticmq.config
 ```
-* Por temas de simplificación partimos de un archivo presetado. Esto es configurable en base a nombres de colas, region, puertos, etc
+* For simplification reasons, we start from a preset file. This is configurable based on queue names, region, ports, etc
 ```git
 include classpath("application.conf")
 
@@ -230,182 +359,247 @@ rest-sqs {
     sqs-limits = strict
 }
 
-generate-node-address = false
-
 queues {
+    "queue-one-deadletter.fifo" {
+        defaultVisibilityTimeout = 10 seconds
+        delay = 0 seconds
+        receiveMessageWait = 0 seconds
+        fifo = true
+        contentBasedDeduplication = true
+    }
+    
     "queue-one.fifo" {
         defaultVisibilityTimeout = 10 seconds
         delay = 0 seconds
         receiveMessageWait = 0 seconds
         deadLettersQueue {
-            name = "queue-one.fifo-deadletter-queue"
+            name = "queue-one-deadletter.fifo"
             maxReceiveCount = 3
         }
         fifo = true
         contentBasedDeduplication = true
     }
-    queue-one.fifo-deadletter-queue {
-        fifo = true
-    }
 }
+
+// Generate node-address on the first available port
 
 aws {
     region = us-east-1
     accountId = 000000000000
 }
 ```
-* En base a esta config, declaramos la misma en el .yml para que por cada ejecución de serverless, se creen los recursos, la config anterior del archivo elasticmq.config es para que la tome el server de elastic.mq
-* Seteamos los recursos de cola en el .yml
+* Based on this config, we declare the same in the .yml so that for each serverless execution, resources are created, the previous config of the elasticmq.config file is for the server to take elastic.mq
+* We set the queue resources in the .yml
 ```git
 resources:
   Resources:
-    myFirstQueue:
+    QueueFifoOne:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: myFirstQueue
-        MessageRetentionPeriod: 1209600
+        QueueName: queue-one.fifo
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 345600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
         RedrivePolicy:
-          deadLetterTargetArn:
-            Fn::GetAtt:
-              - myFirstQueue
-              - Arn
+          deadLetterTargetArn: !GetAtt QueueFifoOneDeadLetter.Arn
           maxReceiveCount: 3
-        VisibilityTimeout: 10
+
+    QueueFifoOneDeadLetter:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: queue-one.fifo-deadletter-queue
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 1209600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
 ```
-* Luego seteamos serverless-offline-sqs
+* Then we set serverless-offline-sqs
 ```git  
 serverless-offline-sqs:
-    sqsHost: 127.0.0.1
-    sqsPort: 9324
-    autoCreate: false
-    apiVersion: "latest"
+    autoCreate: true
+    apiVersion: "2012-11-05"
     endpoint: http://127.0.0.1:9324
     region: us-east-1
-    accessKeyId: local
-    secretAccessKey: local
-    skipCacheInvalidation: false 
+    accessKeyId: test
+    secretAccessKey: test
+    skipCacheInvalidation: false
 ```
-* Seteamos la lambda en el .yml...resumiendo...nos quedaria el serverless.yml de la sig manera
+* Then we set serverless-offline-elasticmq
+```git  
+  serverless-offline-elasticmq:
+    port: 9324
+    host: 127.0.0.1
+    queues:
+      - name: queue-one.fifo
+        fifo: true
+        contentBasedDeduplication: true
+        visibilityTimeout: 30
+        delay: 0
+        receiveMessageWait: 0
+        deadLettersQueue:
+          name: queue-one.fifo-deadletter-queue
+          maxReceiveCount: 3
+      - name: queue-one.fifo-deadletter-queue
+        fifo: true
+```
+* Etc.....
+* We set the lambda in the .yml...summarizing...we would end up with the serverless.yml of the following way
 ```git
-service: aws-sqs-offline
+service: producer-consumer-sqs-fifo-aws
 
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs18.x
-  stage: dev
-  apiGateway:
-    apiKeys:
-      - name : xApiKey
-        value : 'f98d8cd98h73s204e3456998ecl9427j'
-
-
-plugins:
-  - serverless-offline-sqs
-  - serverless-offline  
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  timeout: 30
+  environment:
+    QUEUE_FIFO_ONE_URL: http://127.0.0.1:9324/queue/queue-one.fifo
+    AWS_REGION: ${self:provider.region}
+    SQS_URL: http://127.0.0.1:9324
+    SSM_URL: http://127.0.0.1:4583
+    AWS_ACCESS_KEY_RANDOM_VALUE: test
+    AWS_SECRET_KEY_RANDOM_VALUE: test
 
 functions:
-  hello:
-    handler: handler.hello
-
-  QueueSendMessage:
-    handler: handler.sendMessage
-    name: Queue-SendMessage-Lambda
-    description: to send sqs message
+  senderSQS:
+    handler: src/lambdas/senderSQS.handler
+    timeout: 30
     events:
       - http:
-          method: POST
           path: sender-queue
-          private: true
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
 
-  QueueReceiveMessage:
-    handler: handler.receiveMessage
-    name: Queue-ReceiveMessage-Lambda
-    description: to receive sqs message
+  listSQS:
+    handler: src/lambdas/listSQS.handler
+    timeout: 30
     events:
-      - sqs:
-          arn:
-            Fn::GetAtt:
-              - myFirstQueue
-              - Arn
-          batchSize: 10  
+      - http:
+          path: list-queue
+          method: get
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
 
-custom :
-  serverless-offline:
-    httpPort: 4000
-    lambdaPort: 4002
-    useChildProcesses: false
-  serverless-offline-sqs:
-    sqsHost: 127.0.0.1
-    sqsPort: 9324
-    autoCreate: false
-    apiVersion: "latest"
-    endpoint: http://127.0.0.1:9324
-    region: us-east-1
-    accessKeyId: local
-    secretAccessKey: local
-    skipCacheInvalidation: false      
+  receiverSQSManual:
+    handler: src/lambdas/receiverSQSManual.handler
+    timeout: 30
+    events:
+      - http:
+          path: receive-queue
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
+
+  receiverSQSAuto:
+    handler: src/lambdas/receiverSQSAuto.handler
+    timeout: 30
+    events:
+      - http:
+          path: process-auto
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
 
 resources:
   Resources:
-    myFirstQueue:
+    QueueFifoOne:
       Type: AWS::SQS::Queue
       Properties:
-        QueueName: myFirstQueue
-        MessageRetentionPeriod: 1209600
+        QueueName: queue-one.fifo
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 345600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
         RedrivePolicy:
-          deadLetterTargetArn:
-            Fn::GetAtt:
-              - myFirstQueue
-              - Arn
+          deadLetterTargetArn: !GetAtt QueueFifoOneDeadLetter.Arn
           maxReceiveCount: 3
-        VisibilityTimeout: 10
+
+    QueueFifoOneDeadLetter:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: queue-one.fifo-deadletter-queue
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 1209600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
+
+plugins:
+  - serverless-offline
+  - serverless-offline-ssm
+  - serverless-offline-sqs
+  - serverless-offline-elasticmq
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4002
+    noPrependStageInUrl: true
+  serverless-offline-ssm:
+    stages:
+      - dev
+    port: 4583
+  serverless-offline-sqs:
+    autoCreate: true
+    apiVersion: "2012-11-05"
+    endpoint: http://127.0.0.1:9324
+    region: us-east-1
+    accessKeyId: test
+    secretAccessKey: test
+    skipCacheInvalidation: false
+  serverless-offline-elasticmq:
+    port: 9324
+    host: 127.0.0.1
+    queues:
+      - name: queue-one.fifo
+        fifo: true
+        contentBasedDeduplication: true
+        visibilityTimeout: 30
+        delay: 0
+        receiveMessageWait: 0
+        deadLettersQueue:
+          name: queue-one.fifo-deadletter-queue
+          maxReceiveCount: 3
+      - name: queue-one.fifo-deadletter-queue
+        fifo: true
+
+    
 
 ```
-* Creamos el archivo handler que sera una lambda donde emule el envío y recibimiento de mensajes
-```git
-odule.exports.sendMessage = async (event) => {
-  const AWS = require("aws-sdk");
-  const SQS = new AWS.SQS({
-    accessKeyId: "local",
-    secretAccessKey: "local",
-    endpoint: "127.0.0.1:9324"
-  });
-
-  try {
-
-    const queueParams = {
-      Entries: [
-        {
-          Id: "1",
-          MessageBody: "this is a message body",
-        }
-      ],
-      QueueUrl: 'http://127.0.0.1:9324/queue/myFirstQueue'
-    }
-
-    const result = await SQS.sendMessageBatch(queueParams).promise();
-    console.log(JSON.stringify(result, null, 2));
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-
-
-
-module.exports.receiveMessage = async (event) => {
-  console.log(JSON.stringify(event.Records, null, 2));
-};
-```
-* Instalamos la dependencia para la ejecución de scripts en paralelo
+* We install the dependency for running scripts in parallel
 ``` git
 npm i concurrently
 ``` 
-* El siguiente script configurado en el package.json del proyecto es el encargado de
-* Levantar el server de elasticmq
-* Levantar serverless-offline
+* The following script configured in the package.json of the project is responsible for
+* Launching the elasticmq server
+* Launching serverless-offline
 ```git
   "scripts": {
     "serverless-offline": "sls offline start",
@@ -413,53 +607,57 @@ npm i concurrently
     "start": "concurrently --kill-others \"npm run queue-start\" \"npm run serverless-offline\""
   },
 ```
-* Ejecutamos la app desde terminal.
+* Etc, etc, etc.
+* We launch the app from terminal.
 ```git
 npm start
 ```
-* Si se presenta algún mensaje indicando qué el puerto 9324 ya está en uso, podemos terminar todos los procesos dependientes y volver a ejecutar la app
+* If we get a message indicating that port 9324 is already in use, we can terminate all dependent processes and restart the app
 ```git
 npx kill-port 9324
+```
+* We launch the app from terminal.
+```git
 npm start
 ```
-* `Importante: ` El ejemplo base descrito podemos visualizarlo en otro repositorio. Dirigirse a [SQS-offline-example-aws](https://github.com/andresWeitzel/SQS-offline-example-aws)
+* `Important: ` The example base described can be visualized in another repository. Go to [SQS-offline-example-aws](https://github.com/andresWeitzel/SQS-offline-example-aws)
 
 
 </details>
 
 
-### 1.3) Tecnologías [🔝](#índice-) 
+### 1.3) Technologies [🔝](#table-of-contents-) 
 
 <details>
   <summary>Ver</summary>
  
  <br>
  
-### Tecnologías Implementadas
+### Technologies Implemented
 
-| **Tecnologías** | **Versión** | **Finalidad** |               
+| **Technologies** | **Version** | **Finality** |               
 | ------------- | ------------- | ------------- |
-| [SDK](https://www.serverless.com/framework/docs/guides/sdk/) | 4.3.2  | Inyección Automática de Módulos para Lambdas |
-| [Serverless Framework Core v3](https://www.serverless.com//blog/serverless-framework-v3-is-live) | 3.23.0 | Core Servicios AWS |
-| [Serverless Plugin](https://www.serverless.com/plugins/) | 6.2.2  | Librerías para la Definición Modular |
-| [Systems Manager Parameter Store (SSM)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) | 3.0 | Manejo de Variables de Entorno |
-| [Amazon Simple Queue Service (SQS)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) | 7.0 | Servicio de colas de mensajes distribuidos | 
-| [Elastic MQ](https://github.com/softwaremill/elasticmq) | 1.3 | Interfaz compatible con SQS (msg memory) | 
+| [SDK](https://www.serverless.com/framework/docs/guides/sdk/) | 4.3.2  | Automatic Module Injection for Lambdas |
+| [Serverless Framework Core v3](https://www.serverless.com//blog/serverless-framework-v3-is-live) | 3.23.0 | Core AWS Services |
+| [Serverless Plugin](https://www.serverless.com/plugins/) | 6.2.2  | Libraries for Modular Definition |
+| [Systems Manager Parameter Store (SSM)](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) | 3.0 | Environment Variable Management |
+| [Amazon Simple Queue Service (SQS)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) | 7.0 | Distributed Messaging Service | 
+| [Elastic MQ](https://github.com/softwaremill/elasticmq) | 1.3 | Interfaces Compatible with SQS (msg memory) | 
 | [Amazon Api Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) | 2.0 | Gestor, Autenticación, Control y Procesamiento de la Api | 
-| [NodeJS](https://nodejs.org/en/) | 14.18.1  | Librería JS |
+| [NodeJS](https://nodejs.org/en/) | 14.18.1  | JS Library |
 | [VSC](https://code.visualstudio.com/docs) | 1.72.2  | IDE |
-| [Postman](https://www.postman.com/downloads/) | 10.11  | Cliente Http |
-| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
-| [Git](https://git-scm.com/downloads) | 2.29.1  | Control de Versiones |
+| [Postman](https://www.postman.com/downloads/) | 10.11  | Http Client |
+| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | System Symbol for Command Line | 
+| [Git](https://git-scm.com/downloads) | 2.29.1  | Version Control |
 
 
 
 </br>
 
 
-### Plugins Implementados.
+### Plugins Implemented.
 
-| **Plugin** | **Descarga** |               
+| **Plugin** | **Download** |               
 | -------------  | ------------- |
 | serverless-offline |  https://www.serverless.com/plugins/serverless-offline |
 | serverless-offline-ssm |  https://www.npmjs.com/package/serverless-offline-ssm |
@@ -468,9 +666,9 @@ npm start
 
 </br>
 
-### Extensiones VSC Implementados.
+### VSC Extensions Implemented.
 
-| **Extensión** |              
+| **Extension** |              
 | -------------  | 
 | Prettier - Code formatter |
 | YAML - Autoformatter .yml (alt+shift+f) |
@@ -486,154 +684,335 @@ npm start
 <br>
 
 
-## Sección 2) Endpoints y Ejemplos. 
+## Section 2) Endpoints and Examples. 
 
 
-### 2.0) Endpoints y recursos [🔝](#índice-) 
-
-<details>
-  <summary>Ver</summary>
-<br>
-
-### 2.0.1) Variables en Postman
-
-| **Variable** | **Initial value** | **Current value** |               
-| ------------- | ------------- | ------------- |
-| base_url | http://localhost:4000/dev  | http://localhost:4000/dev |
-| x-api-key | f98d8cd98h73s204e3456998ecl9427j  | f98d8cd98h73s204e3456998ecl9427j |
-| bearer_token | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c  | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c |
-
-<br>
-
-<br>
-
-### 2.0.2) Listar todas las colas creadas (desde navegador)
-#### Request cURL
-``` postman
-curl --location --request GET 'http://localhost:9324/?Action=ListQueues'
-```
-
-#### Response
-``` postman
-  <ListQueuesResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
-                  <ListQueuesResult>
-                    <QueueUrl>http://localhost:9324/queue/queue-one</QueueUrl><QueueUrl>http://localhost:9324/queue/queue-one.fifo</QueueUrl>
-                  </ListQueuesResult>
-                  <ResponseMetadata>
-                    <RequestId>00000000-0000-0000-0000-000000000000</RequestId>
-                  </ResponseMetadata>
-                </ListQueuesResponse>
-```
-
-<br>
-
-<br>
-
-### 2.0.3) Encolar un mensaje en la cola fifo (desde navegador)
-#### Request
-``` postman
-curl --location --request GET 'http://localhost:9324/000000000000/queue-one.fifo?Action=SendMessage&MessageBody=HELLO&MessageGroupId=XXXX'
-```
-
-#### Response
-``` postman
-<SendMessageResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
-                <SendMessageResult>
-                  
-                  <MD5OfMessageBody>eb61eead90e3b899c6bcbe27ac581660</MD5OfMessageBody>
-                  <MessageId>ead221b3-5ec5-4e00-b69a-fabd46f003fd</MessageId>
-                </SendMessageResult>
-                <ResponseMetadata>
-                  <RequestId>00000000-0000-0000-0000-000000000000</RequestId>
-                </ResponseMetadata>
-              </SendMessageResponse>
-```
-
-<br>
-
-<br>
-
-### 2.0.4) Encolar un mensaje desde postman
-#### Request
-``` postman
-curl --location 'http://localhost:4000/dev/sender-queue/' \
---header 'x-api-key: f98d8cd98h73s204e3456998ecl9427j' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' \
---header 'Content-Type: application/json' \
---data '{
-        "JsonObject": {
-          "DataType": "String",
-          "StringValue": "Example for sender an object inside de MessageAttributes"
-        }
-}'
-```
-
-#### Response
-``` postman
-{
-    "message": {
-        "middlewareStack": {},
-        "input": {
-            "QueueUrl": "http://127.0.0.1:9324/queue/queue-one.fifo",
-            "DelaySeconds": 0,
-            "MessageDeduplicationId": "33fbc227-08c7-4bf3-90b4-c705f51f7e4e",
-            "MessageGroupId": "33fbc227-08c7-4bf3-90b4-c705f51f7e4e",
-            "MessageBody": "information about sending the message",
-            "MessageAttributes": {
-                "JsonObject": {
-                    "DataType": "String",
-                    "StringValue": "Example for sender an object inside de MessageAttributes"
-                }
-            }
-        }
-    }
-}
-```
-
-<br>
-
-
-</details>
-
-<br>
-
-
-## Sección 3) Prueba de funcionalidad y Referencias. 
-
-
-### 3.0) Prueba de funcionalidad [🔝](#índice-) 
-
-<details>
-  <summary>Ver</summary>
-<br>
-
-#### [Visualizar playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
-![Index app](./doc/assets/yt/playlist.png)
-
-</details>
-
-
-
-### 3.1) Referencias [🔝](#índice-)
+### 2.0) Endpoints Available
 
 <details>
   <summary>Ver</summary>
  
  <br>
 
-#### Conceptos SQS
- * [Conceptos claves aws sqs](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
- * [Diferencias SQS SNS](https://aws.amazon.com/it/sqs/faqs/)
+We include a Postman collection to facilitate testing of the endpoints. The collection is located in:
+
+```
+/collections/Producer_Consumer_SQS.postman_collection.json
+``` 
+
+<br>
+
+#### Send Message (POST /sender-queue)
+
+> Sends a message to the SQS FIFO queue.
+
+**Request (Postman):**
+```
+POST http://localhost:3000/dev/sender-queue
+Headers:
+  x-api-key: 123456789
+  Content-Type: application/json
+Body:
+{
+    "message": "Test message",
+    "data": {
+        "key": "value",
+        "timestamp": "2024-06-12T15:25:58.849Z",
+        "metadata": {
+            "source": "test",
+            "priority": "high"
+        }
+    }
+}
+```
+
+**Response (200 OK):**
+```json
+{
+    "message": {
+        "message": "Message sent successfully",
+        "messageId": "e34d83db-907a-46d4-ac84-e28a3f2e3e72"
+    }
+}
+```
+<br>
+
+#### List Queue (GET /list-queue)
+
+> Gets information about the current status of the SQS queue.
+
+**Request (Postman):**
+```
+GET http://localhost:3000/dev/list-queue
+Headers:
+  x-api-key: 123456789
+```
+
+**Response (200 OK):**
+```json
+{
+    "message": {
+        "message": "Queue information retrieved successfully",
+        "queueInfo": {
+            "url": "http://localhost:9324/000000000000/queue-one.fifo",
+            "approximateNumberOfMessages": "5",
+            "approximateNumberOfMessagesDelayed": "0",
+            "approximateNumberOfMessagesNotVisible": "0",
+            "createdTimestamp": "2024-06-12T15:25:58.849Z",
+            "lastModifiedTimestamp": "2024-06-12T15:25:58.849Z",
+            "queueArn": "arn:aws:sqs:elasticmq:000000000000:queue-one.fifo",
+            "visibilityTimeout": "30"
+        }
+    }
+}
+```
+<br>
+
+#### Manual Processing (POST /receive-queue)
+
+> Processes a specific message from the queue manually.
+
+**Request (Postman):**
+```
+POST http://localhost:3000/dev/receive-queue
+Headers:
+  x-api-key: 123456789
+  Content-Type: application/json
+Body:
+{
+    "receiptHandle": "AQEB...",
+    "queueUrl": "http://localhost:9324/000000000000/queue-one.fifo",
+    "messageId": "e34d83db-907a-46d4-ac84-e28a3f2e3e72"
+}
+```
+
+**Response (200 OK):**
+```json
+{
+    "message": {
+        "message": "Message processed successfully",
+        "processedMessage": {
+            "messageId": "e34d83db-907a-46d4-ac84-e28a3f2e3e72",
+            "body": "Test message",
+            "attributes": {
+                "metadata": {
+                    "source": "test",
+                    "priority": "high"
+                }
+            },
+            "processedAt": "2024-06-12T15:25:58.849Z",
+            "processingType": "manual"
+        }
+    }
+}
+```
+<br>
+
+#### Automatic Processing (POST /receive-queue)
+
+> Sends a message for automatic processing.
+
+**Request (Postman):**
+```
+POST http://localhost:3000/dev/receive-queue
+Headers:
+  x-api-key: 123456789
+  Content-Type: application/json
+Body:
+{
+    "message": {
+        "JsonObject": {
+            "DataType": "String",
+            "StringValue": "Example for sender an object inside de MessageAttributes"
+        }
+    }
+}
+```
+
+**Response (200 OK):**
+```json
+{
+    "message": {
+        "message": "Message queued for automatic processing",
+        "details": {
+            "messageId": "e34d83db-907a-46d4-ac84-e28a3f2e3e72",
+            "status": "queued",
+            "estimatedProcessingTime": "1-2 seconds",
+            "processingType": "automatic"
+        }
+    }
+}
+```
+<br>
+
+#### Error Codes
+
+> List of possible error codes and their responses.
+
+**400 Bad Request:**
+```json
+{
+    "message": "BAD REQUEST. UNABLE TO RETRIEVE QUEUE INFORMATION"
+}
+```
+
+**401 Unauthorized:**
+```json
+{
+    "message": "Unauthorized. Invalid or missing API key"
+}
+```
+
+**500 Internal Server Error:**
+```json
+{
+    "message": "Error in RECEIVER SQS AUTO lambda. Caused by [ERROR_DETAILS]"
+}
+```
+
+<br>
+
+#### Processing Flows
+
+> Manual and automatic processing examples.
+
+#### Manual Flow
+1. Send message:
+```bash
+curl -X POST http://localhost:3000/dev/sender-queue \
+-H "x-api-key: 123456789" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": "Test message",
+    "data": {
+        "key": "value",
+        "timestamp": "2024-06-12T15:25:58.849Z"
+    }
+}'
+```
+
+2. Check queue status:
+```bash
+curl -X GET http://localhost:3000/dev/list-queue \
+-H "x-api-key: 123456789"
+```
+
+3. Process message:
+```bash
+curl -X POST http://localhost:3000/dev/receive-queue \
+-H "x-api-key: 123456789" \
+-H "Content-Type: application/json" \
+-d '{
+    "receiptHandle": "AQEB...",
+    "queueUrl": "http://localhost:9324/000000000000/queue-one.fifo"
+}'
+```
+
+#### Automatic Flow
+1. Send message for automatic processing:
+```bash
+curl -X POST http://localhost:3000/dev/receive-queue \
+-H "x-api-key: 123456789" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": "Test message for automatic processing",
+    "data": {
+        "key": "value",
+        "timestamp": "2024-06-12T15:25:58.849Z"
+    }
+}'
+```
+
+2. Check queue status:
+```bash
+curl -X GET http://localhost:3000/dev/list-queue \
+-H "x-api-key: 123456789"
+```
+
+</details>
+
+
+
+### 2.0) Message Processing Patterns [🔝](#table-of-contents-)
+
+<details>
+  <summary>Ver</summary>
+
+<br>
+
+The system implements two message processing patterns:
+
+#### 2.0.0) Automatic Processing
+- **Description**: The system includes an automatic processor that activates once executed, does the sender and receiver process.
+- **Features**:
+  - Automatically activates processing once triggered
+  - Processes up to 10 messages at a time
+  - Deletes messages after processing
+  - No manual action required, just execution
+- **Advantages**:
+  - Real-time processing
+  - No manual intervention by stages
+  - Ideal for continuous workloads
+- **Use**: No additional configuration required, activates automatically when executed
+
+#### 2.0.1) Manual Processing
+- **Description**: Allows manual processing of messages through an HTTP endpoint.
+- **Features**:
+  - Greater control over processing
+  - Possibility to inspect messages before processing
+  - Ideal for debugging and special cases
+- **Use**:
+  1. List messages (GET /list-queue)
+  2. Select message to process
+  3. Send message for processing (POST /receive-queue)
+
+#### 2.0.2) Important Notes
+- Automatic and manual processing can coexist
+- Messages processed automatically will not be available for manual processing
+- Manual processing is recommended for debugging and special cases or tests
+- Automatic processing is ideal for production
+
+<br>
+
+</details>
+
+<br>
+
+
+## Section 3) Functionality Test and References. 
+
+
+### 3.0) Functionality Test [🔝](#table-of-contents-) 
+
+<details>
+  <summary>Ver</summary>
+<br>
+
+#### [View playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+![Index app](../doc/assets/playlist.png)
+
+</details>
+
+### 3.1) References [🔝](#table-of-contents-)
+
+<details>
+  <summary>Ver</summary>
+ 
+ <br>
+
+#### SQS Concepts
+ * [AWS SQS key concepts](https://fourtheorem.com/what-do-you-need-to-know-about-sqs/)
+ * [SQS SNS Differences](https://aws.amazon.com/it/sqs/faqs/)
 
 #### SQS aws-sdk-v3
-* [Envío de mensajes a través de colas](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/javascript_sqs_code_examples.html)
+* [Sending messages through queues](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/javascript_sqs_code_examples.html)
 
-#### Ejemplos para Queues FIFO
-* [Ejemplos FIFO](https://docs.aws.amazon.com/sns/latest/dg/fifo-topic-code-examples.html)
+#### FIFO Queue Examples
+* [FIFO Examples](https://docs.aws.amazon.com/sns/latest/dg/fifo-topic-code-examples.html)
 
-#### Usos y Ejemplificación de SQS y Serverless
-* [Ejemplo base aws-node-sqs](https://github.com/ibrahimjamil/serverless-rest-examples/blob/v3/aws-node-sqs-worker/index.js)
-* [Parte de Ejemplo Base SQS](https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6)
+#### SQS and Serverless Usages and Exampleification
+* [AWS-node-sqs Example](https://github.com/ibrahimjamil/serverless-rest-examples/blob/v3/aws-node-sqs-worker/index.js)
+* [Part of AWS-node-sqs Example](https://dev.to/piczmar_0/aws-lambda-sqs-events-with-serverless-framework-oj6)
 * https://aws.plainenglish.io/how-to-test-amazon-sqs-with-docker-using-serverless-b717258f5d3d
 * https://github.com/alexyklu/serverless-offline-lambda-with-sqs
 
@@ -641,5 +1020,3 @@ curl --location 'http://localhost:4000/dev/sender-queue/' \
 <br>
 
 </details>
-
-

@@ -1,0 +1,611 @@
+{
+	"info": {
+		"_postman_id": "14b85790-8605-43c5-9873-9ae85d20367c",
+		"name": "Producer_Consumer_SQS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18757319"
+	},
+	"item": [
+		{
+			"name": "fifo-queue-one",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "sender-queue",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "f98d8cd98h73s204e3456998ecl9427j",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": {\r\n        \"JsonObject\": {\r\n            \"DataType\": \"String\",\r\n            \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/sender-queue",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"sender-queue"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "sender-queue",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "f98d8cd98h73s204e3456998ecl9427j",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{bearer_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"message\": {\r\n        \"JsonObject\": {\r\n            \"DataType\": \"String\",\r\n            \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/sender-queue",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"sender-queue"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "vary",
+											"value": "origin"
+										},
+										{
+											"key": "access-control-expose-headers",
+											"value": "WWW-Authenticate,Server-Authorization"
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache"
+										},
+										{
+											"key": "content-length",
+											"value": "224"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 15:29:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": {\n        \"message\": \"Message sent successfully\",\n        \"messageId\": \"238d5107-0102-4d69-b895-e789c73b2c0d\",\n        \"messageDeduplicationId\": \"bac5c503-e0d5-4716-bc79-2853684c5df6\",\n        \"messageGroupId\": \"group1\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "receive-queue",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "f98d8cd98h73s204e3456998ecl9427j",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/receive-queue",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"receive-queue"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "sender-queue",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "f98d8cd98h73s204e3456998ecl9427j",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{bearer_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"message\": {\r\n        \"JsonObject\": {\r\n            \"DataType\": \"String\",\r\n            \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/dev/sender-queue",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"dev",
+												"sender-queue"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache"
+										},
+										{
+											"key": "content-length",
+											"value": "122"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 14:31:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": {\n        \"message\": \"Message sent successfully\",\n        \"messageId\": \"1181eba9-9a2e-417c-812f-6da55b5a348d\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "process-auto",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "f98d8cd98h73s204e3456998ecl9427j",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"message\": {\r\n        \"JsonObject\": {\r\n            \"DataType\": \"String\",\r\n            \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/process-auto",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"process-auto"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "sender-queue",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "f98d8cd98h73s204e3456998ecl9427j",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{bearer_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"message\": {\r\n        \"JsonObject\": {\r\n            \"DataType\": \"String\",\r\n            \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/dev/sender-queue",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"dev",
+												"sender-queue"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache"
+										},
+										{
+											"key": "content-length",
+											"value": "122"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 14:31:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": {\n        \"message\": \"Message sent successfully\",\n        \"messageId\": \"1181eba9-9a2e-417c-812f-6da55b5a348d\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "list-queues",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "f98d8cd98h73s204e3456998ecl9427j",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{bearer_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"JsonObject\": {\r\n          \"DataType\": \"String\",\r\n          \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/list-queue",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"list-queue"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "sender-queue",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "f98d8cd98h73s204e3456998ecl9427j",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{bearer_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n        \"JsonObject\": {\r\n          \"DataType\": \"String\",\r\n          \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/list-queue",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"list-queue"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "vary",
+											"value": "origin"
+										},
+										{
+											"key": "access-control-expose-headers",
+											"value": "WWW-Authenticate,Server-Authorization"
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache"
+										},
+										{
+											"key": "content-length",
+											"value": "882"
+										},
+										{
+											"key": "accept-ranges",
+											"value": "bytes"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 15:29:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": {\n        \"message\": \"Messages retrieved successfully\",\n        \"messages\": [\n            {\n                \"messageId\": \"238d5107-0102-4d69-b895-e789c73b2c0d\",\n                \"body\": \"{\\\"JsonObject\\\":{\\\"DataType\\\":\\\"String\\\",\\\"StringValue\\\":\\\"Example for sender an object inside de MessageAttributes\\\"}}\",\n                \"attributes\": {\n                    \"StringValue\": {\n                        \"StringValue\": \"Example for sender an object inside de MessageAttributes\",\n                        \"DataType\": \"String\"\n                    }\n                },\n                \"messageGroupId\": \"group1\",\n                \"messageDeduplicationId\": \"bac5c503-e0d5-4716-bc79-2853684c5df6\",\n                \"sentTimestamp\": \"1749742155914\",\n                \"approximateFirstReceiveTimestamp\": \"1749742169557\",\n                \"receiptHandle\": \"238d5107-0102-4d69-b895-e789c73b2c0d#8aa66201-093c-4d73-84dd-6408a13c97b0\"\n            }\n        ],\n        \"queueUrl\": \"http://127.0.0.1:9324/queue/queue-one.fifo\"\n    }\n}"
+								},
+								{
+									"name": "sender-queue",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "f98d8cd98h73s204e3456998ecl9427j",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{bearer_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n        \"JsonObject\": {\r\n          \"DataType\": \"String\",\r\n          \"StringValue\": \"Example for sender an object inside de MessageAttributes\"\r\n        }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:4000/list-queue",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "4000",
+											"path": [
+												"list-queue"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "vary",
+											"value": "origin"
+										},
+										{
+											"key": "access-control-expose-headers",
+											"value": "WWW-Authenticate,Server-Authorization"
+										},
+										{
+											"key": "cache-control",
+											"value": "no-cache"
+										},
+										{
+											"key": "content-length",
+											"value": "524"
+										},
+										{
+											"key": "accept-ranges",
+											"value": "bytes"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 12 Jun 2025 15:42:54 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": {\n        \"message\": \"Queue information retrieved successfully\",\n        \"queueInfo\": {\n            \"url\": \"http://127.0.0.1:9324/queue/queue-one.fifo\",\n            \"approximateNumberOfMessages\": \"1\",\n            \"approximateNumberOfMessagesDelayed\": \"0\",\n            \"approximateNumberOfMessagesNotVisible\": \"0\",\n            \"createdTimestamp\": \"1970-01-21T06:02:22.811Z\",\n            \"lastModifiedTimestamp\": \"1970-01-21T06:02:22.811Z\",\n            \"queueArn\": \"arn:aws:sqs:us-east-1:000000000000:queue-one.fifo\",\n            \"visibilityTimeout\": \"10\"\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:4000/dev"
+		},
+		{
+			"key": "x-api-key",
+			"value": "f98d8cd98h73s204e3456998ecl9427j"
+		},
+		{
+			"key": "bearer_token",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+		}
+	]
+}

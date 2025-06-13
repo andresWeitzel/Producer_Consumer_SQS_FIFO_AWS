@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serverless-offline": "sls offline start",
-    "queue-start": "java -Dconfig.file=.elasticmq/elasticmq.config -jar .elasticmq/elasticmq-server-0.15.4.jar",
+    "queue-start": "java -Dconfig.file=.elasticmq/elasticmq.config -jar .elasticmq/elasticmq-server-all-1.6.12.jar",
     "start": "concurrently --kill-others \"npm run queue-start\" \"npm run serverless-offline\""
   },
   "repository": {
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.363.0",
+    "@aws-sdk/client-ssm": "^3.828.0",
     "concurrently": "^8.2.0",
     "prettier": "^2.8.8",
     "serverless-offline-sqs": "^7.3.2",
