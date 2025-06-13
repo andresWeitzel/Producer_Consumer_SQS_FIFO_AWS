@@ -687,7 +687,7 @@ npm start
 ## Section 2) Endpoints and Examples. 
 
 
-### 2.0) Endpoints and resources
+### 2.0) Endpoints and resources [🔝](#table-of-contents-)
 
 <details>
   <summary>Ver</summary>
@@ -933,7 +933,7 @@ curl -X GET http://localhost:3000/dev/list-queue \
 
 
 
-### 2.1) Message Processing Patterns [🔝](#table-of-contents-)
+### 2.1) Message Processing Patterns. [🔝](#table-of-contents-)
 
 <details>
   <summary>Ver</summary>
