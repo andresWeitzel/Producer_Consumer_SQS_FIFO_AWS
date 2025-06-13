@@ -54,20 +54,20 @@ Communication between producer and consumer with manual and automatic processing
 
 ### Section 1) Description, Technologies and References
 
-* [1.0) Project Description.](#10-project-description)
-* [1.1) Project Execution.](#11-project-execution)
-* [1.2) Configure the serverless project from scratch](#12-configure-the-serverless-project-from-scratch)
-* [1.3) Technologies.](#13-technologies)
+* [1.0) Project Description.](#10-project-description-)
+* [1.1) Project Execution.](#11-project-execution-)
+* [1.2) Configure the serverless project from scratch](#12-configure-the-serverless-project-from-scratch-)
+* [1.3) Technologies.](#13-technologies-)
 
 ### Section 2) Endpoints and Examples
 
-* [2.0) Endpoints and resources.](#20-endpoints-and-resources)
-* [2.1) Message Processing Patterns.](#21-message-processing-patterns)
+* [2.0) Endpoints and resources.](#20-endpoints-and-resources-)
+* [2.1) Message Processing Patterns.](#21-message-processing-patterns-)
 
 ### Section 3) Functionality Test and References
 
-* [3.0) Functionality Test.](#30-functionality-test)
-* [3.1) References.](#31-references)
+* [3.0) Functionality Test.](#30-functionality-test-)
+* [3.1) References.](#31-references-)
 
 </details>
 
