@@ -1,70 +1,141 @@
-service: test-serverless-sqs
+service: producer-consumer-sqs-fifo-aws
 
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs18.x
-  stage: dev
-  region: us-east-1
-  memorySize: 512
-  timeout: 10
-  environment: ${file(serverless.ssm.yml)}
-  apiGateway:
-    apiKeys:
-      - name : xApiKey
-        value : ${file(./serverless.ssm.yml):X_API_KEY}
-
-plugins:
-  - serverless-offline-sqs
-  - serverless-offline-ssm
-  - serverless-offline
-
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  timeout: 30
+  environment:
+    QUEUE_FIFO_ONE_URL: http://127.0.0.1:9324/queue/queue-one.fifo
+    AWS_REGION: ${self:provider.region}
+    SQS_URL: http://127.0.0.1:9324
+    SSM_URL: http://127.0.0.1:4583
+    AWS_ACCESS_KEY_RANDOM_VALUE: test
+    AWS_SECRET_KEY_RANDOM_VALUE: test
 
 functions:
   senderSQS:
     handler: src/lambdas/senderSQS.handler
-    name : Queue-SendMessage-Lambda
-    description: to send sqs message
+    timeout: 30
     events:
       - http:
-          method: POST
           path: sender-queue
-          private: true
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
 
-  ReceiverSQS:
-    handler: src/lambdas/receiverSQS.handler
-    name: Queue-ReceiveMessage-Lambda
-    description: to receive sqs message
+  listSQS:
+    handler: src/lambdas/listSQS.handler
+    timeout: 30
     events:
-      - sqs:
-          arn:
-            Fn::GetAtt:
-              - fifoQueueOne
-              - Arn
-          batchSize: 10 
+      - http:
+          path: list-queue
+          method: get
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+
+  receiverSQSManual:
+    handler: src/lambdas/receiverSQSManual.handler
+    timeout: 30
+    events:
+      - http:
+          path: receive-queue
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
+
+  receiverSQSAuto:
+    handler: src/lambdas/receiverSQSAuto.handler
+    timeout: 30
+    events:
+      - http:
+          path: process-auto
+          method: post
+          cors: true
+          request:
+            parameters:
+              headers:
+                x-api-key: true
+                Content-Type: true
+
 resources:
-  - ${file(src/resources/api-gateway.yml)}
-  - ${file(src/resources/sqs-config.yml)}
+  Resources:
+    QueueFifoOne:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: queue-one.fifo
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 345600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt QueueFifoOneDeadLetter.Arn
+          maxReceiveCount: 3
+
+    QueueFifoOneDeadLetter:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: queue-one.fifo-deadletter-queue
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 1209600
+        DelaySeconds: 0
+        ReceiveMessageWaitTimeSeconds: 0
+
+plugins:
+  - serverless-offline
+  - serverless-offline-ssm
+  - serverless-offline-sqs
+  - serverless-offline-elasticmq
 
 custom:
   serverless-offline:
-    httpPort: ${file(./serverless.ssm.yml):SERVERLESS_HTTP_PORT}
-    lambdaPort: ${file(./serverless.ssm.yml):SERVERLESS_LAMBDA_PORT}
-  serverless-offline-sqs:  
-    sqsHost: ${file(./serverless.ssm.yml):SQS_HOST}
-    sqsPort: ${file(./serverless.ssm.yml):SQS_PORT}
-    autoCreate: false
-    apiVersion: ${file(./serverless.ssm.yml):SQS_API_VERSION}
-    endpoint: ${file(./serverless.ssm.yml):SQS_URL}
-    region: ${file(./serverless.ssm.yml):AWS_REGION}
-    accessKeyId: ${file(./serverless.ssm.yml):AWS_ACCESS_KEY_RANDOM_VALUE}
-    secretAccessKey: ${file(./serverless.ssm.yml):AWS_SECRET_KEY_RANDOM_VALUE}
-    skipCacheInvalidation: false
+    httpPort: 4000
+    lambdaPort: 4002
+    noPrependStageInUrl: true
   serverless-offline-ssm:
     stages:
       - dev
-    ssm: 
-      ${file(./serverless.ssm.yml)}
+    port: 4583
+  serverless-offline-sqs:
+    autoCreate: true
+    apiVersion: "2012-11-05"
+    endpoint: http://127.0.0.1:9324
+    region: us-east-1
+    accessKeyId: test
+    secretAccessKey: test
+    skipCacheInvalidation: false
+  serverless-offline-elasticmq:
+    port: 9324
+    host: 127.0.0.1
+    queues:
+      - name: queue-one.fifo
+        fifo: true
+        contentBasedDeduplication: true
+        visibilityTimeout: 30
+        delay: 0
+        receiveMessageWait: 0
+        deadLettersQueue:
+          name: queue-one.fifo-deadletter-queue
+          maxReceiveCount: 3
+      - name: queue-one.fifo-deadletter-queue
+        fifo: true
 
     
