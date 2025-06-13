@@ -214,10 +214,10 @@ git clone https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS
 ```git
 cd 'projectName'
 ```
-* We install the latest LTS version of [Nodejs(v18)](https://nodejs.org/en/download)
-* We install Serverless Framework globally if we haven't done it
+* We install the LTS version of [Nodejs(v18)](https://nodejs.org/en/download)
+* We install the Serverless Framework globally if we haven't already. I recommend version three since it's free and doesn't ask for credentials. The latest version (four) can be used without any problems, although it requires a paid version.
 ```git
-npm install -g serverless
+npm install -g serverless@3
 ```
 * We verify the Serverless Framework version installed
 ```git
