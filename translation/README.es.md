@@ -988,8 +988,13 @@ El sistema implementa dos patrones de procesamiento de mensajes:
   <summary>Ver</summary>
 <br>
 
-#### [Visualizar playlist](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
-![Index app](../doc/assets/yt/playlist.png)
+#### [Ver playlist](https://www.youtube.com/playlist?list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
+
+
+  <a href="https://www.youtube.com/playlist?list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb">
+    <img src="../doc/assets/Producer_Consumer_SQS_FIFO_AWS_yt.png" />
+  </a> 
+
 
 </details>
 
