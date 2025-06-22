@@ -34,7 +34,7 @@
 
 <div align="center">
 
-# Producer_Consumer_SQS_FIFO_AWS ![Status](./doc/assets/icons/badges/status-completed.svg)
+# Producer_Consumer_SQS_FIFO_AWS ![(status-completed)](./doc/assets/icons/badges/status-completed.svg)
 
 </div>
 
