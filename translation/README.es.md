@@ -40,6 +40,7 @@
 
 Comunicación entre producer y consumer con procesamiento manual y automático utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, aws sdk-v3, ElasticMQ, entre otros.
 
+* [Postman Collection](../postman/Producer_Consumer_SQS.postman_collection.json) 
 * [Playlist pruebas funcionales](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb) <a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank"> <img src="../doc/assets/social-networks/yt.png" width="25" /></a>
 
 
