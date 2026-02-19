@@ -49,7 +49,12 @@ Comunicación entre producer y consumer con procesamiento manual y automático u
 
 <details>
   <summary>Ver</summary>
-<br>
+
+<div align="right">
+
+`Última actualización: 19/02/26` 
+
+</div>
 
 
 ### Sección 1) Descripción, Tecnologías y Referencias
