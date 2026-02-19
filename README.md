@@ -49,7 +49,7 @@ Communication between producer and consumer with manual and automatic processing
 ## Index 📜
 
 <details>
-<summary>See</summary>
+<summary>View details</summary>
 
 <div align="right">
 
@@ -85,7 +85,7 @@ Communication between producer and consumer with manual and automatic processing
 ### 1.0) Description [🔝](#table-of-contents-) 
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
  
  <br>
 
@@ -205,7 +205,7 @@ Communication between producer and consumer with manual and automatic processing
 ### 1.1) Project Execution [🔝](#table-of-contents-)
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
 
 * We create a working environment through some ide, we can or cannot create a root folder for the project, we position ourselves over it
 ```git
@@ -261,7 +261,7 @@ npm start
 ### 1.2) Configure the serverless project from scratch [🔝](#table-of-contents-)
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
  
  <br>
 
@@ -634,7 +634,7 @@ npm start
 ### 1.3) Technologies [🔝](#table-of-contents-) 
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
  
  <br>
  
@@ -695,7 +695,7 @@ npm start
 ### 2.0) Endpoints and resources [🔝](#table-of-contents-)
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
  
  <br>
 
@@ -941,7 +941,7 @@ curl -X GET http://localhost:3000/dev/list-queue \
 ### 2.1) Message Processing Patterns. [🔝](#table-of-contents-)
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
 
 <br>
 
@@ -990,7 +990,7 @@ The system implements two message processing patterns:
 ### 3.0) Functionality Test [🔝](#table-of-contents-) 
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
 <br>
 
 #### [Watch playlist](https://www.youtube.com/playlist?list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
@@ -1006,7 +1006,7 @@ The system implements two message processing patterns:
 ### 3.1) References [🔝](#table-of-contents-)
 
 <details>
-  <summary>See</summary>
+  <summary>View details</summary>
  
  <br>
 
