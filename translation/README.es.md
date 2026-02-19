@@ -49,7 +49,7 @@ Comunicación entre producer y consumer con procesamiento manual y automático u
 ## Índice 📜
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
 
 <div align="right">
 
@@ -86,7 +86,7 @@ Comunicación entre producer y consumer con procesamiento manual y automático u
 ### 1.0) Descripción [🔝](#índice-) 
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
  
  <br>
 
@@ -206,7 +206,7 @@ Comunicación entre producer y consumer con procesamiento manual y automático u
 ### 1.1) Ejecución del Proyecto [🔝](#índice-)
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
 
 * Creamos un entorno de trabajo a través de algún ide, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre la misma
 ```git
@@ -262,7 +262,7 @@ npm start
 ### 1.2) Configurar el proyecto serverless desde cero [🔝](#índice-)
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
  
  <br>
 
@@ -635,7 +635,7 @@ npm start
 ### 1.3) Tecnologías [🔝](#índice-) 
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
  
  <br>
  
@@ -696,7 +696,7 @@ npm start
 ### 2.0) Endpoints Disponibles
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
  
  <br>
 
@@ -942,7 +942,7 @@ curl -X GET http://localhost:3000/dev/list-queue \
 ### 2.0) Patrones de Procesamiento de Mensajes [🔝](#índice-)
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
 
 <br>
 
@@ -991,7 +991,7 @@ El sistema implementa dos patrones de procesamiento de mensajes:
 ### 3.0) Prueba de funcionalidad [🔝](#índice-) 
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
 <br>
 
 #### [Ver playlist](https://www.youtube.com/playlist?list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
@@ -1007,7 +1007,7 @@ El sistema implementa dos patrones de procesamiento de mensajes:
 ### 3.1) Referencias [🔝](#índice-)
 
 <details>
-  <summary>Ver</summary>
+  <summary>Ver detalles</summary>
  
  <br>
 
