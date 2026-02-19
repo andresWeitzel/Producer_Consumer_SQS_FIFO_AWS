@@ -21,10 +21,10 @@
 
 <div align="right"> 
   <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/translation/README.es.md">
-    <img width="65" height="40" src="../doc/assets/translation/arg-flag.jpg" />
+    <img src="../doc/assets/translation/arg-flag.jpg" width="65" height="40" />
   </a> 
   <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/README.md">
-    <img width="65" height="40" src="../doc/assets/translation/eeuu-flag.jpg" />
+    <img src="../doc/assets/translation/eeuu-flag.jpg" width="65" height="40" />
   </a> 
 </div>
 
@@ -34,12 +34,13 @@
 
 <div align="center">
 
-# Producer_Consumer_SQS_FIFO_AWS ![Status](../doc/assets/icons/badges/status-completed.svg)
+# Producer_Consumer_SQS_FIFO_AWS ![(status-completed)](../doc/assets/icons/badges/status-completed.svg)
 
 </div>
 
 Comunicación entre producer y consumer con procesamiento manual y automático utilizando el servicio SQS de AWS con colas FIFO implementado con Systems Manager Parameter Store, Api-Gateway, Serverless-Framework, Lambda, NodeJs, aws sdk-v3, ElasticMQ, entre otros.
 
+* [Postman Collection](../postman/Producer_Consumer_SQS.postman_collection.json) 
 * [Playlist pruebas funcionales](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb) <a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank"> <img src="../doc/assets/social-networks/yt.png" width="25" /></a>
 
 
