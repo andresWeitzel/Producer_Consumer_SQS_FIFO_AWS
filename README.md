@@ -29,7 +29,7 @@
 
 <div align="center">
 
-# Producer_Consumer_SQS_FIFO_AWS ![(status-completed)](./doc/assets/icons/badges/status-completed.svg)
+# Producer Consumer SQS FIFO AWS ![(status-completed)](./doc/assets/icons/badges/status-completed.svg)
 
 </div>
 
