@@ -1,9 +1,5 @@
 <div align="center">
-<table border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td>
 <img src="./doc/assets/Producer_Consumer_SQS_FIFO_AWS.drawio.png" alt="Index app" />
-<br>
 <div align="right">
 <img width="16" height="16" src="./doc/assets/icons/devops/png/aws.png" alt="AWS" />
 <img width="16" height="16" src="./doc/assets/icons/aws/png/lambda.png" alt="Lambda" />
@@ -14,9 +10,6 @@
 <img width="16" height="16" src="./doc/assets/icons/aws/png/parameter-store.png" alt="Parameter Store" />
 <img width="16" height="16" src="./doc/assets/icons/backend/javascript-typescript/png/nodejs.png" alt="Node.js" />
 </div>
-</td>
-</tr>
-</table>
 </div>
 
 <br>
