@@ -36,9 +36,9 @@
 Arquitectura serverless de productor y consumidor sobre colas FIFO de AWS SQS. Conserva el orden de los mensajes, controla duplicados y cubre envío, consulta de cola y recepción, con procesamiento manual o automático, API Gateway, Lambda, Parameter Store y ElasticMQ.
 
 <div align="left">
-<a href="./postman/Producer_Consumer_SQS.postman_collection.json" target="_blank" rel="noopener noreferrer" title="Colección de Postman"><img src="./doc/assets/icons/detail-actions/postman-pill.svg" alt="Postman" width="100" height="30" border="0" /></a>
+<a href="./postman/Producer_Consumer_SQS.postman_collection.json" target="_blank" rel="noopener noreferrer" title="Colección de Postman"><img src="./doc/assets/icons/detail-actions/postman-pill.png" alt="Postman" width="100" height="30" border="0" /></a>
 <br>
-<a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank" rel="noopener noreferrer" title="Playlist"><img src="./doc/assets/icons/detail-actions/playlist-pill.svg" alt="Playlist" width="100" height="30" border="0" /></a>
+<a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank" rel="noopener noreferrer" title="Playlist"><img src="./doc/assets/icons/detail-actions/playlist-pill.png" alt="Playlist" width="100" height="30" border="0" /></a>
 </div>
 
 <br>

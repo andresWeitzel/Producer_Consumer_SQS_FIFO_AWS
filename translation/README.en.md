@@ -36,11 +36,9 @@
 A serverless producer-consumer architecture on AWS SQS FIFO queues. It preserves message order, controls duplicates, and covers send, queue inspection, and receive, with manual or automatic processing, API Gateway, Lambda, Parameter Store, and ElasticMQ.
 
 <div align="left">
-
-[![Postman](../doc/assets/icons/detail-actions/postman-pill.svg)](../postman/Producer_Consumer_SQS.postman_collection.json)
-
-[![Playlist](../doc/assets/icons/detail-actions/playlist-pill.svg)](https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb)
-
+<a href="../postman/Producer_Consumer_SQS.postman_collection.json" target="_blank" rel="noopener noreferrer" title="Postman collection"><img src="../doc/assets/icons/detail-actions/postman-pill.png" alt="Postman" width="100" height="30" border="0" /></a>
+<br>
+<a href="https://www.youtube.com/watch?v=sGK_4FQBdP8&list=PLCl11UFjHurCkJNddrHBJ_TUfMlrHuWyb" target="_blank" rel="noopener noreferrer" title="Playlist"><img src="../doc/assets/icons/detail-actions/playlist-pill.png" alt="Playlist" width="100" height="30" border="0" /></a>
 </div>
 
 <br>
