@@ -1,5 +1,6 @@
 <div align="center">
 <img src="./doc/assets/Producer_Consumer_SQS_FIFO_AWS.drawio.png" alt="Index app" />
+<br>
 <div align="right">
 <img width="16" height="16" src="./doc/assets/icons/devops/png/aws.png" alt="AWS" />
 <img width="16" height="16" src="./doc/assets/icons/aws/png/lambda.png" alt="Lambda" />
@@ -17,10 +18,10 @@
 <br>
 
 <div align="right">
-  <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/README.md" title="Español">
+  <a href="./README.md" title="Español">
     <img src="./doc/assets/translation/arg-flag.jpg" width="64" height="40" alt="Español" title="Español" />
   </a>
-  <a href="https://github.com/andresWeitzel/Producer_Consumer_SQS_FIFO_AWS/blob/master/translation/README.en.md" title="Inglés">
+  <a href="./translation/README.en.md" title="Inglés">
     <img src="./doc/assets/translation/eeuu-flag.jpg" width="64" height="40" alt="Inglés" title="Inglés" />
   </a>
 </div>
